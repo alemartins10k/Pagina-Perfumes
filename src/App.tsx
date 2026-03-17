@@ -70,7 +70,7 @@ const FadeInSection = ({ children, className = "" }: { children: ReactNode, clas
 };
 
 const Navbar = () => (
-  <nav className="fixed top-0 left-0 right-0 z-50 bg-aqua/80 backdrop-blur-md py-3 shadow-[0_0_20px_rgba(127,255,212,0.3)] border-b border-aqua/30 overflow-hidden">
+  <nav className="absolute top-0 left-0 right-0 z-50 bg-aqua/80 backdrop-blur-md py-3 shadow-[0_0_20px_rgba(127,255,212,0.3)] border-b border-aqua/30 overflow-hidden">
     {/* Efeito de linha de scan futurista */}
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent w-1/2 [animation:scanline_3s_infinite_linear]" />
@@ -185,7 +185,7 @@ const Hero = () => (
 
 const VisualProof = () => {
   const fragranceImages = [
-    "https://i.imgur.com/30wmElQ.png",
+    "https://i.imgur.com/UD5dXKQ.jpg",
     "https://i.imgur.com/I5Y8B2a.jpeg",
     "https://i.imgur.com/0AwsPpb.jpeg",
     "https://i.imgur.com/5MrznjA.jpeg",
