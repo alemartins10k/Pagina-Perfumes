@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { motion, useInView } from "motion/react";
+import { motion, useInView, AnimatePresence } from "motion/react";
 import { 
   Check, 
   Play, 
@@ -17,7 +17,8 @@ import {
   Zap,
   Heart,
   Eye,
-  Crown
+  Crown,
+  ChevronDown
 } from "lucide-react";
 import { useRef, useEffect, useState, ReactNode } from "react";
 import { cn } from "./lib/utils";
@@ -101,40 +102,40 @@ const Navbar = () => (
 );
 
 const Hero = () => (
-  <section className="section-padding section-dark pt-32">
+  <section className="section-padding section-dark pt-20">
     <div className="mobile-container text-center">
       <motion.h1 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-4"
+        className="mb-8"
       >
         Venda apenas 2 perfumes por dia e gere até <span className="text-brand">R$1.800/mês</span>
       </motion.h1>
       
-      <motion.p 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1 }}
-        className="text-zinc-400 mb-8 max-w-[300px] mx-auto"
-      >
-        Qualidade de Grife com preço que os clientes compram sem pensar 2x.
-      </motion.p>
-
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
         className="space-y-3 mb-10 inline-block text-left"
       >
-        {["Sem necessidade de loja física", "Não precisa ter seguidores", "Comece com baixo investimento"].map((text, i) => (
+        {["Comece a partir de R$100", "Até 150% por unidade", "Mesmo sem experiência com vendas"].map((text, i) => (
           <div key={i} className="flex items-center gap-3 text-zinc-300">
-            <div className="bg-brand/20 p-1 rounded-full">
-              <Check className="w-4 h-4 text-brand" />
+            <div className="bg-brand p-0.5 rounded-full">
+              <Check className="w-3 h-3 text-black" strokeWidth={4} />
             </div>
             <span className="text-[14px] font-medium">{text}</span>
           </div>
         ))}
       </motion.div>
+
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.25 }}
+        className="text-zinc-400 text-sm mb-4 flex items-center justify-center gap-2 whitespace-nowrap"
+      >
+        🎥 Assista ao vídeo e entenda como funciona
+      </motion.p>
 
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
@@ -164,10 +165,11 @@ const Hero = () => (
           rel="noopener noreferrer"
           className="w-full h-[56px] text-lg font-bold bg-brand text-dark rounded-lg flex items-center justify-center whitespace-nowrap shadow-lg shadow-brand/20"
           animate={{ 
-            scale: [1, 1.02, 1],
+            scale: [1, 1.05, 1],
+            y: [0, -3, 0]
           }}
           transition={{
-            duration: 2.5,
+            duration: 2,
             repeat: Infinity,
             ease: "easeInOut"
           }}
@@ -198,10 +200,13 @@ const VisualProof = () => {
   ];
 
   return (
-    <section className="section-padding section-light overflow-hidden">
+    <section className="py-10 section-dark overflow-hidden">
       <div className="mobile-container">
         <FadeInSection>
-          <h2 className="text-center mb-10">50 Fragrâncias<br />inspiradas nas principais grifes do mundo.</h2>
+          <h2 className="text-center mb-10">
+            <span className="text-brand">50 Fragrâncias</span><br />
+            <span className="text-white">inspiradas nas principais grifes do mundo.</span>
+          </h2>
         </FadeInSection>
       </div>
       <div className="w-full">
@@ -209,8 +214,8 @@ const VisualProof = () => {
       </div>
       <div className="mobile-container text-center mt-6">
         <FadeInSection>
-          <p className="text-zinc-500 text-sm italic">
-            Todos os modelos disponíveis na versão de 15ml e 100ml.
+          <p className="text-brand text-sm italic">
+            Disponível na versão de 15ml e 100ml.
           </p>
         </FadeInSection>
       </div>
@@ -222,13 +227,15 @@ const Quality = () => (
   <section className="section-padding section-dark">
     <div className="mobile-container">
       <FadeInSection className="text-center">
-        <h2 className="mb-10">Qualidade de Grife sem preço de Grife</h2>
-        <div className="mb-10 card-rounded bg-white/5 p-4 border border-white/10">
-          <img 
-            src="https://i.imgur.com/poCxFsY.png" 
+        <h2 className="mb-10">Qualidade de Grife<br />sem preço de Grife</h2>
+        <div className="mb-10 card-rounded bg-white/5 border border-white/10 overflow-hidden">
+          <motion.img 
+            src="https://i.imgur.com/pPJ7TLK.jpg" 
             alt="Detalhe do Perfume" 
-            className="w-full aspect-square object-cover rounded-lg"
+            className="w-full aspect-square object-cover"
             referrerPolicy="no-referrer"
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
         <div className="space-y-6 text-left">
@@ -320,7 +327,7 @@ const EaseOfSale = () => (
 );
 
 const Kits = () => (
-  <section className="section-padding section-light">
+  <section id="kits" className="section-padding section-light">
     <div className="mobile-container">
       <FadeInSection className="text-center">
         <h2 className="mb-10">Escolha o seu Kit para começar</h2>
@@ -329,7 +336,7 @@ const Kits = () => (
             { 
               name: "Kit Conhecer", 
               price: "100", 
-              priceDetail: "no pix ou 12x 10,00 no cartão",
+              priceDetail: "No pix ou 12x 10,00 no cartão",
               desc: "Ideal para confirmar a qualidade olfativa e fixação na pele.",
               items: [
                 "5 perfumes", 
@@ -341,7 +348,7 @@ const Kits = () => (
             { 
               name: "Kit Essencial", 
               price: "240", 
-              priceDetail: "no pix ou 12x 24,00 no cartão",
+              priceDetail: "No pix ou 12x 24,00 no cartão",
               desc: "O melhor custo-benefício.", 
               featured: true,
               items: [
@@ -353,10 +360,14 @@ const Kits = () => (
               ]
             }
           ].map((kit, i) => (
-            <div key={i} className={`p-8 rounded-xl border text-center relative ${kit.featured ? 'border-brand border-2 bg-white shadow-2xl z-10' : 'border-zinc-200 bg-zinc-50'}`}>
+            <div 
+              key={i} 
+              id={kit.featured ? "kit-essencial" : undefined}
+              className={`p-8 rounded-xl border text-center relative ${kit.featured ? 'border-brand border-2 bg-white shadow-2xl z-10' : 'border-zinc-200 bg-zinc-50'}`}
+            >
               {kit.featured && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand text-dark text-[10px] font-black px-4 py-1 rounded-full uppercase tracking-widest">
-                  Mais Popular
+                  RECOMENDADO
                 </div>
               )}
               <h3 className="text-xl font-bold mb-2">{kit.name}</h3>
@@ -365,7 +376,10 @@ const Kits = () => (
               {kit.items && (
                 <ul className="mb-4 space-y-1">
                   {kit.items.map((item, idx) => (
-                    <li key={idx} className="text-sm font-semibold text-zinc-700">{item}</li>
+                    <li key={idx} className="flex items-center justify-center gap-2 text-sm font-semibold text-zinc-700">
+                      <Check className={cn("w-4 h-4 flex-shrink-0", kit.featured ? "text-brand" : "text-black")} strokeWidth={3} />
+                      {item}
+                    </li>
                   ))}
                 </ul>
               )}
@@ -376,7 +390,7 @@ const Kits = () => (
                   <span className="text-[48px] font-black leading-none">{kit.price}</span>
                 </div>
                 {kit.priceDetail && (
-                  <p className="text-[11px] font-bold text-zinc-500 mt-2 uppercase tracking-tighter">
+                  <p className="text-[11px] font-bold text-zinc-500 mt-2 tracking-tighter">
                     {kit.priceDetail}
                   </p>
                 )}
@@ -389,9 +403,12 @@ const Kits = () => (
                   "w-full h-[56px] text-lg font-bold flex items-center justify-center rounded-lg transition-all",
                   kit.featured ? "bg-brand text-dark shadow-lg shadow-brand/20" : "bg-dark text-white border border-white/10"
                 )}
-                animate={kit.featured ? { scale: [1, 1.02, 1] } : {}}
+                animate={kit.featured ? { 
+                  scale: [1, 1.03, 1],
+                  y: [0, -4, 0]
+                } : {}}
                 transition={{
-                  duration: 2.5,
+                  duration: 2,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
@@ -449,10 +466,10 @@ const Franchises = () => {
   ];
 
   return (
-    <section className="section-padding section-light overflow-hidden">
+    <section className="py-6 section-dark overflow-hidden">
       <div className="mobile-container">
         <FadeInSection>
-          <h2 className="text-center mb-10">Conheça nossas franquias</h2>
+          <h2 className="text-center mb-6">Conheça nossas franquias</h2>
         </FadeInSection>
       </div>
       <div className="w-full">
@@ -462,21 +479,266 @@ const Franchises = () => {
   );
 };
 
+const FAQ = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      question: "É confiável comprar com vocês?",
+      answer: (
+        <>
+          <p>Sim. Você pode comprar com segurança e, se preferir, retirar pessoalmente:</p>
+          <div className="mt-4 space-y-2">
+            <p className="flex items-start gap-2">
+              <MapPin className="w-4 h-4 text-brand mt-1 flex-shrink-0" />
+              <span>Guarapari — Rua São Pedro, 292 • Muquiçaba</span>
+            </p>
+            <p className="flex items-start gap-2">
+              <MapPin className="w-4 h-4 text-brand mt-1 flex-shrink-0" />
+              <span>Cariacica — Shopping Moxuara</span>
+            </p>
+          </div>
+          <p className="mt-4">Além disso, enviamos para todo o Brasil com código de rastreio.</p>
+        </>
+      )
+    },
+    {
+      question: "Os perfumes são realmente bons?",
+      answer: (
+        <>
+          <p>Sim. Trabalhamos com contratipos categoria Parfum, com alta concentração de essência.</p>
+          <p className="mt-4 font-bold text-zinc-300">Na prática isso significa:</p>
+          <ul className="mt-2 space-y-2">
+            <li className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-brand" />
+              <span>Cheiro muito próximo das fragrâncias importadas</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-brand" />
+              <span>Fixação intensa na pele</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-brand" />
+              <span>Qualidade que surpreende até quem já usa perfume de grife</span>
+            </li>
+          </ul>
+          <p className="mt-4 italic">Grande parte dos clientes volta a comprar.</p>
+        </>
+      )
+    },
+    {
+      question: "Quanto tempo dura na pele?",
+      answer: (
+        <>
+          <p>Depende da pele, mas normalmente varia entre 8 a 24 horas.</p>
+          <p className="mt-4">Isso acontece por conta da alta concentração de essência utilizada na produção.</p>
+        </>
+      )
+    },
+    {
+      question: "É difícil vender perfume?",
+      answer: (
+        <>
+          <p>Não.</p>
+          <p className="mt-4 font-bold text-zinc-300">Perfume é um dos produtos mais fáceis de vender porque:</p>
+          <ul className="mt-2 space-y-2">
+            <li className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-brand" />
+              <span>Todo mundo usa</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-brand" />
+              <span>É um produto de desejo</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-brand" />
+              <span>Tem alta recompra</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-brand" />
+              <span>A venda acontece quando a pessoa sente o cheiro</span>
+            </li>
+          </ul>
+          <p className="mt-4">Você só precisa oferecer.</p>
+        </>
+      )
+    },
+    {
+      question: "Dá mesmo para fazer dinheiro com isso?",
+      answer: (
+        <>
+          <p>Sim, é totalmente possível.</p>
+          <p className="mt-4">Muitos revendedores fazem entre R$1.000 e R$3.000 por mês, vendendo no tempo livre.</p>
+          <div className="mt-4 p-4 bg-zinc-900 rounded-lg border border-white/5">
+            <p className="font-bold text-brand">Exemplo simples:</p>
+            <p className="mt-1">1 perfume por dia → ~R$900/mês</p>
+            <p>2 por dia → ~R$1.800/mês</p>
+          </div>
+          <p className="mt-4 text-[10px] text-zinc-500 uppercase tracking-widest">
+            ⚠️ Lembrando: o resultado depende da sua constância e divulgação.
+          </p>
+        </>
+      )
+    },
+    {
+      question: "Quanto eu ganho por perfume?",
+      answer: (
+        <>
+          <p>A margem pode chegar até 150% por unidade.</p>
+          <div className="mt-4 p-4 bg-zinc-900 rounded-lg border border-white/5">
+            <p className="font-bold text-brand">Exemplo:</p>
+            <p className="mt-1">Compra por R$20</p>
+            <p>Venda por R$50</p>
+          </div>
+          <p className="mt-4">Lucro direto em cada venda.</p>
+        </>
+      )
+    },
+    {
+      question: "Em quanto tempo recebo meu pedido?",
+      answer: (
+        <>
+          <div className="space-y-2">
+            <p className="flex items-center gap-2">
+              <Truck className="w-4 h-4 text-brand" />
+              <span>📦 Espírito Santo: de 1 a 3 dias úteis</span>
+            </p>
+            <p className="flex items-center gap-2">
+              <Truck className="w-4 h-4 text-brand" />
+              <span>📦 Demais regiões: envio com rastreio pelos Correios</span>
+            </p>
+          </div>
+          <p className="mt-4">Ou, se preferir, pode retirar pessoalmente.</p>
+        </>
+      )
+    },
+    {
+      question: "Posso começar com pouco dinheiro?",
+      answer: (
+        <>
+          <p>Sim.</p>
+          <p className="mt-4">Temos kits a partir de R$100, ideal para conhecer o produto e já começar a divulgar.</p>
+        </>
+      )
+    },
+    {
+      question: "Vou ter suporte depois da compra?",
+      answer: (
+        <>
+          <p>Sim.</p>
+          <p className="mt-4">Você não começa sozinho.</p>
+          <p className="mt-4 font-bold text-zinc-300">Damos suporte para te ajudar a:</p>
+          <ul className="mt-2 space-y-2">
+            <li className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-brand" />
+              <span>Escolher os perfumes certos</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-brand" />
+              <span>Divulgar</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-brand" />
+              <span>Fazer suas primeiras vendas</span>
+            </li>
+          </ul>
+        </>
+      )
+    },
+    {
+      question: "Como escolho os perfumes do meu kit?",
+      answer: (
+        <>
+          <p>Após a compra, você recebe automaticamente no seu whtasapp sugestões dos mais vendidos para você confirmar o envio.</p>
+        </>
+      )
+    },
+    {
+      question: "Vocês têm amostras para demonstrar para o cliente?",
+      answer: (
+        <>
+          <p>Não trabalhamos com amostras menores ou estojos.</p>
+          <p className="mt-4">Utilizamos os próprios perfumes de 15ml como mostruário, o que é até mais eficiente na prática — o cliente consegue testar exatamente o produto que você vende.</p>
+          <p className="mt-4 font-bold text-zinc-300">👉 Por isso, recomendamos o Kit Essencial com 12 perfumes:</p>
+          <ul className="mt-2 space-y-2">
+            <li className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-brand" />
+              <span>6 unidades para venda</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-brand" />
+              <span>6 unidades para demonstração</span>
+            </li>
+          </ul>
+          <p className="mt-4 italic">Assim você consegue apresentar, gerar desejo e vender com muito mais facilidade.</p>
+        </>
+      )
+    }
+  ];
+
+  return (
+    <section className="section-padding section-dark">
+      <div className="mobile-container">
+        <FadeInSection className="text-center mb-10">
+          <h2 className="mb-4">❓ Dúvidas Frequentes</h2>
+          <p className="text-zinc-500">Tudo o que você precisa saber para começar com segurança.</p>
+        </FadeInSection>
+
+        <div className="space-y-4">
+          {faqs.map((faq, i) => (
+            <motion.div
+              key={i}
+              className="border border-white/5 rounded-xl overflow-hidden bg-zinc-900/50"
+              initial={false}
+            >
+              <button
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                className="w-full p-5 flex items-center justify-between text-left transition-colors hover:bg-white/5"
+              >
+                <span className="font-bold text-zinc-200">{faq.question}</span>
+                <motion.div
+                  animate={{ rotate: openIndex === i ? 180 : 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  <ChevronDown className="w-5 h-5 text-brand" />
+                </motion.div>
+              </button>
+
+              <AnimatePresence initial={false}>
+                {openIndex === i && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                  >
+                    <div className="p-5 pt-0 text-zinc-400 text-sm leading-relaxed border-t border-white/5">
+                      {faq.answer}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const FinalCTA = () => (
   <section className="section-padding section-light text-center">
     <div className="mobile-container">
       <FadeInSection>
-        <h2 className="mb-6">Sua nova jornada começa aqui</h2>
+        <h2 className="mb-6">“Comece a gerar renda com um produto que todo mundo já compra.”</h2>
         <p className="text-zinc-500 mb-10">
-          Transforme sua realidade financeira com um produto que todo mundo ama.
+          👇 Escolha seu kit e comece agora.
         </p>
         <motion.div
           className="w-full"
         >
           <motion.a
-            href="https://wa.me/31993935885?text=Ol%C3%A1%20Al%C3%AA!%20Quero%20comprar%20meu%20kit."
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#kit-essencial"
             className="w-full h-[56px] text-lg font-bold mb-6 bg-brand text-dark rounded-lg flex items-center justify-center whitespace-nowrap shadow-lg shadow-brand/20"
             animate={{ 
               scale: [1, 1.02, 1],
@@ -489,7 +751,7 @@ const FinalCTA = () => (
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            QUERO COMEÇAR A REVENDER
+            QUERO COMEÇAR AGORA
           </motion.a>
         </motion.div>
         <div className="flex items-center justify-center gap-2 text-zinc-400">
@@ -523,6 +785,7 @@ export default function App() {
       <Kits />
       <Security />
       <Franchises />
+      <FAQ />
       <FinalCTA />
       <Footer />
     </div>
