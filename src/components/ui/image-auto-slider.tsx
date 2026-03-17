@@ -72,7 +72,7 @@ export const ImageAutoSlider = ({ images: customImages }: { images?: string[] })
             {duplicatedImages.map((image, index) => (
               <div
                 key={index}
-                className="image-item flex-shrink-0 w-44 h-64 md:w-64 md:h-80 rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/5"
+                className="image-item flex-shrink-0 w-56 h-56 md:w-72 md:h-72 rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/5"
               >
                 <img
                   src={image}
