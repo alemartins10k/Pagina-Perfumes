@@ -338,6 +338,7 @@ const Kits = () => (
               price: "100", 
               priceDetail: "No pix ou 12x 10,00 no cartão",
               desc: "Ideal para confirmar a qualidade olfativa e fixação na pele.",
+              whatsappLink: "https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20a%20revender%20perfumes%20e%20queria%20entender%20qual%20kit%20voc%C3%AA%20me%20indica%20para%20iniciar.",
               items: [
                 "5 perfumes", 
                 "Catalogo Digital Completo",
@@ -351,6 +352,7 @@ const Kits = () => (
               priceDetail: "No pix ou 12x 24,00 no cartão",
               desc: "O melhor custo-benefício.", 
               featured: true,
+              whatsappLink: "https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20com%20o%20kit%20de%2012%20perfumes.%20Pode%20me%20ajudar%20a%20escolher%20os%20mais%20vendidos%3F",
               items: [
                 "12 perfumes", 
                 "Catalogo Digital Completo",
@@ -396,7 +398,7 @@ const Kits = () => (
                 )}
               </div>
               <motion.a
-                href="https://wa.me/31993935885?text=Ol%C3%A1%20Al%C3%AA!%20Quero%20comprar%20meu%20kit."
+                href={kit.whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
@@ -452,6 +454,9 @@ const Security = () => (
 
 const Franchises = () => {
   const franchiseImages = [
+    "https://i.imgur.com/JSwSNbG.jpeg",
+    "https://i.imgur.com/c55HUXD.jpeg",
+    "https://i.imgur.com/S96XSza.jpeg",
     "https://i.imgur.com/bLkNLif.jpeg",
     "https://i.imgur.com/isKVZ8S.jpeg",
     "https://i.imgur.com/8oOUxSO.jpeg",
@@ -469,7 +474,7 @@ const Franchises = () => {
     <section className="py-6 section-dark overflow-hidden">
       <div className="mobile-container">
         <FadeInSection>
-          <h2 className="text-center mb-6">Conheça nossas franquias</h2>
+          <h2 className="text-center mb-6">Conheça nossas franquias e faça parte do time</h2>
         </FadeInSection>
       </div>
       <div className="w-full">
@@ -741,10 +746,11 @@ const FinalCTA = () => (
             href="#kit-essencial"
             className="w-full h-[56px] text-lg font-bold mb-6 bg-brand text-dark rounded-lg flex items-center justify-center whitespace-nowrap shadow-lg shadow-brand/20"
             animate={{ 
-              scale: [1, 1.02, 1],
+              scale: [1, 1.08, 1],
+              y: [0, -5, 0]
             }}
             transition={{
-              duration: 2.5,
+              duration: 1.5,
               repeat: Infinity,
               ease: "easeInOut"
             }}
