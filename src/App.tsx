@@ -90,8 +90,8 @@ const Navbar = () => (
       >
         {[1, 2, 3, 4, 5, 6].map((i) => (
           <div key={i} className="flex items-center gap-3">
-            <Crown className="w-5 h-5 text-dark" strokeWidth={2.5} />
-            <span className="text-lg font-black text-dark tracking-tighter [animation:neon-pulse_2s_infinite_ease-in-out]">
+            <Crown className="w-5 h-5 text-dark" strokeWidth={2} />
+            <span className="text-lg font-normal text-dark tracking-tighter [animation:neon-pulse_2s_infinite_ease-in-out]">
               Revenda as Fragâncias mais desejadas do mundo!
             </span>
           </div>
@@ -118,9 +118,26 @@ const Hero = () => (
         transition={{ delay: 0.2 }}
         className="mb-10 max-w-md mx-auto"
       >
-        <p className="text-zinc-300 text-lg font-medium leading-relaxed">
-          Revenda <span className="text-brand">fragrâncias que já vendem sozinhas</span>,<br /> com alta margem em cada venda.
-        </p>
+        <div className="text-zinc-300 text-lg font-medium leading-relaxed space-y-3 flex flex-col items-center sm:items-start max-w-fit mx-auto">
+          <div className="flex items-center gap-3">
+            <div className="bg-brand/20 p-1 rounded-full">
+              <Check className="w-4 h-4 text-brand" />
+            </div>
+            <span>Produto de alta aceitação</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="bg-brand/20 p-1 rounded-full">
+              <Check className="w-4 h-4 text-brand" />
+            </div>
+            <span>Fácil de demonstrar</span>
+          </div>
+          <div className="flex items-center gap-3 text-left">
+            <div className="bg-brand/20 p-1 rounded-full shrink-0">
+              <Check className="w-4 h-4 text-brand" />
+            </div>
+            <span>Alta chance de venda na primeira apresentação</span>
+          </div>
+        </div>
       </motion.div>
 
       <motion.p
