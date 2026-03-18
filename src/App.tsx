@@ -118,20 +118,20 @@ const Hero = () => (
         transition={{ delay: 0.2 }}
         className="mb-10 max-w-md mx-auto"
       >
-        <div className="text-zinc-300 text-lg font-medium leading-relaxed space-y-3 flex flex-col items-center sm:items-start max-w-fit mx-auto">
-          <div className="flex items-center gap-3">
+        <div className="text-zinc-300 text-lg font-medium leading-relaxed space-y-6 flex flex-col items-center sm:items-start max-w-fit mx-auto">
+          <div className="flex flex-col items-center sm:flex-row sm:items-center gap-2 sm:gap-3 text-center sm:text-left">
             <div className="bg-brand/20 p-1 rounded-full">
               <Check className="w-4 h-4 text-brand" />
             </div>
             <span>Produto de alta aceitação</span>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col items-center sm:flex-row sm:items-center gap-2 sm:gap-3 text-center sm:text-left">
             <div className="bg-brand/20 p-1 rounded-full">
               <Check className="w-4 h-4 text-brand" />
             </div>
             <span>Fácil de demonstrar</span>
           </div>
-          <div className="flex items-center gap-3 text-left">
+          <div className="flex flex-col items-center sm:flex-row sm:items-center gap-2 sm:gap-3 text-center sm:text-left">
             <div className="bg-brand/20 p-1 rounded-full shrink-0">
               <Check className="w-4 h-4 text-brand" />
             </div>
