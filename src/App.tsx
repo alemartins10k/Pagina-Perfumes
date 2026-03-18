@@ -82,17 +82,17 @@ const Navbar = () => (
           x: [0, "-50%"],
         }}
         transition={{
-          duration: 15,
+          duration: 30,
           repeat: Infinity,
           ease: "linear"
         }}
         className="flex gap-20 items-center"
       >
-        {[1, 2, 3, 4].map((i) => (
+        {[1, 2, 3, 4, 5, 6].map((i) => (
           <div key={i} className="flex items-center gap-3">
             <Crown className="w-5 h-5 text-dark" strokeWidth={2.5} />
             <span className="text-lg font-black text-dark tracking-tighter [animation:neon-pulse_2s_infinite_ease-in-out]">
-              Perfumes Bortoletto & Atlântica Natural
+              Revenda as Fragâncias mais desejadas do mundo!
             </span>
           </div>
         ))}
@@ -109,23 +109,18 @@ const Hero = () => (
         animate={{ opacity: 1, y: 0 }}
         className="mb-8"
       >
-        Venda apenas 2 perfumes por dia e gere até <span className="text-brand">R$1.800/mês</span>
+        Uma forma simples de fazer pelo menos <span className="text-brand">R$200 por semana</span> vendendo perfumes — mesmo começando com apenas <span className="text-brand">R$240</span>
       </motion.h1>
       
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="space-y-3 mb-10 inline-block text-left"
+        className="mb-10 max-w-md mx-auto"
       >
-        {["Comece a partir de R$100", "Até 150% por unidade", "Mesmo sem experiência com vendas"].map((text, i) => (
-          <div key={i} className="flex items-center gap-3 text-zinc-300">
-            <div className="bg-brand p-0.5 rounded-full">
-              <Check className="w-3 h-3 text-black" strokeWidth={4} />
-            </div>
-            <span className="text-[14px] font-medium">{text}</span>
-          </div>
-        ))}
+        <p className="text-zinc-300 text-lg font-medium leading-relaxed">
+          Revenda <span className="text-brand">fragrâncias que já vendem sozinhas</span>,<br /> com alta margem em cada venda.
+        </p>
       </motion.div>
 
       <motion.p
