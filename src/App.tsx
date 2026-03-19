@@ -183,10 +183,11 @@ const VisualProof = () => {
     "https://i.imgur.com/zjhJH0X.jpeg",
     "https://i.imgur.com/C9JWUQE.jpeg",
     "https://i.imgur.com/UBUC3OA.jpeg",
-    "https://i.imgur.com/RsNfegh.jpeg",
-    "https://i.imgur.com/L6bGUMs.jpeg",
-    "https://i.imgur.com/WEQOWxv.jpeg"
+    "https://i.imgur.com/RsNfegh.jpeg"
   ];
+
+  const row1 = fragranceImages.slice(0, 5);
+  const row2 = fragranceImages.slice(5, 10);
 
   return (
     <section className="py-10 section-dark overflow-hidden">
@@ -202,8 +203,18 @@ const VisualProof = () => {
           </div>
         </FadeInSection>
       </div>
-      <div className="w-full">
-        <ImageAutoSlider images={fragranceImages} duration={80} />
+      <div className="w-full space-y-1">
+        <ImageAutoSlider 
+          images={row1} 
+          duration={20} 
+          size="w-24 h-24" 
+        />
+        <ImageAutoSlider 
+          images={row2} 
+          duration={20} 
+          reverse={true} 
+          size="w-24 h-24" 
+        />
       </div>
     </section>
   );
