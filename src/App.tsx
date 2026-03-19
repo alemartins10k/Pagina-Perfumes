@@ -163,30 +163,39 @@ const Hero = () => (
 
 const VisualProof = () => {
   const fragranceImages = [
-    "https://i.imgur.com/UD5dXKQ.jpg",
-    "https://i.imgur.com/I5Y8B2a.jpeg",
-    "https://i.imgur.com/0AwsPpb.jpeg",
-    "https://i.imgur.com/5MrznjA.jpeg",
-    "https://i.imgur.com/QJEQrTl.jpeg",
-    "https://i.imgur.com/RPr1mWC.jpeg",
-    "https://i.imgur.com/zjhJH0X.jpeg",
-    "https://i.imgur.com/C9JWUQE.jpeg",
-    "https://i.imgur.com/UBUC3OA.jpeg",
-    "https://i.imgur.com/RsNfegh.jpeg"
+    "https://i.imgur.com/fYwVO9x.jpeg",
+    "https://i.imgur.com/tBNBn9n.jpeg",
+    "https://i.imgur.com/SY37oZg.jpeg",
+    "https://i.imgur.com/XAxZcT9.jpeg",
+    "https://i.imgur.com/3jdwSPc.jpeg",
+    "https://i.imgur.com/yig3TbV.jpeg",
+    "https://i.imgur.com/lZ4ub1i.jpeg",
+    "https://i.imgur.com/kszZisI.jpeg",
+    "https://i.imgur.com/PvOKmPK.jpeg",
+    "https://i.imgur.com/dGECRcO.jpeg",
+    "https://i.imgur.com/lzIk70H.jpeg",
+    "https://i.imgur.com/WruWqRA.jpeg",
+    "https://i.imgur.com/CnyaOIw.jpeg",
+    "https://i.imgur.com/SgAuQhs.jpeg",
+    "https://i.imgur.com/6gqMU2J.jpeg",
+    "https://i.imgur.com/TAH7Ac9.jpeg",
+    "https://i.imgur.com/eXaZ8ah.jpeg",
+    "https://i.imgur.com/R6mPlre.jpeg",
+    "https://i.imgur.com/fUo4wRw.jpeg"
   ];
 
-  const row1 = fragranceImages.slice(0, 5);
-  const row2 = fragranceImages.slice(5, 10);
+  const row1 = fragranceImages.slice(0, 10);
+  const row2 = fragranceImages.slice(10, 19);
 
   return (
-    <section className="py-10 section-dark overflow-hidden">
+    <section className="py-10 bg-black overflow-hidden">
       <div className="mobile-container">
         <FadeInSection>
           <h2 className="text-center mb-4">
-            <span className="text-dark">As Mais Famosas Grifes Internacionais.</span>
+            <span className="text-white">As Mais Famosas Grifes Internacionais.</span>
           </h2>
           <div className="text-center mb-10">
-            <p className="text-black font-bold text-sm italic">
+            <p className="text-yellow-400 font-bold text-sm italic">
               Disponíveis na versão de 15ml e 100ml.
             </p>
           </div>
@@ -197,12 +206,14 @@ const VisualProof = () => {
           images={row1} 
           duration={20} 
           size="w-[134px] h-[134px]" 
+          glow={true}
         />
         <ImageAutoSlider 
           images={row2} 
           duration={20} 
           reverse={true} 
           size="w-[134px] h-[134px]" 
+          glow={true}
         />
       </div>
     </section>
@@ -274,48 +285,111 @@ const Quality = () => (
   </section>
 );
 
-const Earnings = () => (
-  <section className="section-padding section-light">
-    <div className="mobile-container">
-      <FadeInSection className="text-center">
-        <h2 className="mb-4">Simulação de Ganhos</h2>
-        
-        <div className="mb-10 bg-brand/5 border border-brand/10 rounded-2xl p-6">
-          <p className="text-zinc-900 font-black text-xl leading-tight uppercase tracking-tight">
-            Faça pelo menos <span className="text-brand">R$200 por semana</span><br />
-            <span className="text-zinc-500 text-sm font-bold tracking-normal lowercase">vendendo apenas 1 perfume por dia</span>
+const Earnings = () => {
+  const [salesPerDay, setSalesPerDay] = useState(2);
+  const profitPerUnit = 30;
+  const daysInMonth = 30;
+  const daysInWeek = 7;
+
+  const monthlyProfit = salesPerDay * profitPerUnit * daysInMonth;
+  const weeklyProfit = salesPerDay * profitPerUnit * daysInWeek;
+
+  return (
+    <section className="section-padding bg-black text-white">
+      <div className="mobile-container">
+        <FadeInSection className="text-center">
+          <h2 className="mb-4 text-white">Simulação de Ganhos</h2>
+          <p className="text-zinc-400 mb-10 text-sm">
+            Arraste o seletor abaixo para ver quanto você pode ganhar
           </p>
-        </div>
-        
-        <div className="space-y-6">
-          {[
-            { sales: 1, profit: 900, label: "Renda Extra" },
-            { sales: 2, profit: 1800, label: "Meta Recomendada", featured: true },
-            { sales: 3, profit: 2700, label: "Profissional" }
-          ].map((item, i) => (
-            <motion.div 
-              key={i}
-              whileHover={{ scale: 1.02 }}
-              className={`p-6 rounded-xl border ${item.featured ? 'bg-dark text-white border-dark shadow-xl' : 'bg-zinc-50 border-zinc-200'}`}
-            >
-              <span className={`text-[10px] font-black uppercase tracking-[0.2em] mb-2 block ${item.featured ? 'text-brand' : 'text-zinc-400'}`}>
-                {item.label}
-              </span>
-              <div className="text-[14px] font-medium mb-1">{item.sales} perfume por dia</div>
-              <div className="text-[28px] font-black">
-                R$ <AnimatedCounter value={item.profit} />/mês
+
+          <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 mb-10 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-brand/10 blur-3xl -mr-16 -mt-16 rounded-full" />
+            
+            <div className="relative z-10">
+              <div className="flex justify-between items-end mb-6">
+                <div className="text-left">
+                  <p className="text-[10px] uppercase tracking-widest text-brand font-black mb-1">VOCÊ VENDE</p>
+                  <div className="text-4xl font-black flex items-baseline gap-2">
+                    {salesPerDay} 
+                    <span className="text-sm font-bold text-zinc-500 uppercase">perfumes / dia</span>
+                  </div>
+                </div>
               </div>
-            </motion.div>
-          ))}
-        </div>
-        
-        <p className="mt-8 text-[12px] text-zinc-400 italic">
-          * Resultados dependem da constância e divulgação.
-        </p>
-      </FadeInSection>
-    </div>
-  </section>
-);
+
+              <input 
+                type="range" 
+                min="1" 
+                max="10" 
+                step="1"
+                value={salesPerDay}
+                onChange={(e) => setSalesPerDay(parseInt(e.target.value))}
+                className="w-full h-3 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-brand mb-10"
+              />
+
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                <div className="bg-black/40 border border-white/5 p-4 rounded-2xl">
+                  <p className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold mb-1">LUCRO SEMANAL</p>
+                  <p className="text-2xl font-black text-brand">R$ {weeklyProfit.toLocaleString('pt-BR')}</p>
+                </div>
+                <div className="bg-black/40 border border-white/5 p-4 rounded-2xl">
+                  <p className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold mb-1">LUCRO MENSAL</p>
+                  <p className="text-2xl font-black text-brand">R$ {monthlyProfit.toLocaleString('pt-BR')}</p>
+                </div>
+              </div>
+
+              <div className="pt-6 border-t border-white/5">
+                <div className="flex items-center justify-between text-sm">
+                  <div className="flex flex-col items-start">
+                    <span className="text-zinc-500 text-[10px] font-bold uppercase">Compra</span>
+                    <span className="font-bold">R$ 20,00</span>
+                  </div>
+                  <div className="w-8 h-[1px] bg-zinc-800" />
+                  <div className="flex flex-col items-center">
+                    <span className="text-zinc-500 text-[10px] font-bold uppercase">Venda</span>
+                    <span className="font-bold">R$ 50,00</span>
+                  </div>
+                  <div className="w-8 h-[1px] bg-zinc-800" />
+                  <div className="flex flex-col items-end">
+                    <span className="text-brand text-[10px] font-bold uppercase">Lucro/Unid.</span>
+                    <span className="font-bold text-brand">R$ 30,00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div className="grid grid-cols-3 gap-3">
+            {[1, 2, 3].map((num) => (
+              <button
+                key={num}
+                onClick={() => setSalesPerDay(num)}
+                className={`py-3 rounded-xl border transition-all text-xs font-bold ${
+                  salesPerDay === num 
+                    ? 'bg-brand text-dark border-brand shadow-lg shadow-brand/20' 
+                    : 'bg-zinc-900 border-zinc-800 text-zinc-400'
+                }`}
+              >
+                {num} {num === 1 ? 'Venda' : 'Vendas'}
+              </button>
+            ))}
+          </div>
+
+          <div className="mt-10 p-6 bg-brand/10 border border-brand/20 rounded-2xl">
+            <p className="text-white font-bold leading-tight">
+              Vendendo apenas <span className="text-brand">1 por dia...</span><br />
+              <span className="text-lg">Você já pode fazer mais de <span className="text-brand">R$ 200 por semana.</span></span>
+            </p>
+          </div>
+          
+          <p className="mt-8 text-[10px] text-zinc-500 italic uppercase tracking-widest">
+            * Resultados baseados em dedicação e constância.
+          </p>
+        </FadeInSection>
+      </div>
+    </section>
+  );
+};
 
 const EaseOfSale = () => (
   <section className="section-padding section-dark">
@@ -355,17 +429,19 @@ const Kits = () => (
         <div className="space-y-8">
           {[
             { 
-              name: "Kit Conhecer", 
+              name: "KIT PROVAR", 
+              headline: "Teste a qualidade antes de começar a revender",
+              subheadline: "Sinta na pele a fixação e descubra por que esses perfumes são tão fáceis de vender",
+              image: "https://i.imgur.com/BlNzxdT.jpeg",
               price: "100", 
-              priceDetail: "No pix ou 12x 10,00 no cartão",
-              desc: "Ideal para confirmar a qualidade olfativa e fixação na pele.",
-              whatsappLink: "https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20a%20revender%20perfumes%20e%20queria%20entender%20qual%20kit%20voc%C3%AA%20me%20indica%20para%20iniciar.",
+              priceDetail: "ou 3x de R$35,00",
+              whatsappLink: "https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20testar%20o%20Kit%20Provar%20primeiro.",
               items: [
-                "5 perfumes", 
+                "3 perfumes entre os mais vendidos", 
                 "Catalogo Digital Completo",
-                "Material Digital para divulgar",
-                "Suporte em grupo"
-              ]
+                "Suporte"
+              ],
+              buttonText: "QUERO TESTAR PRIMEIRO"
             },
             { 
               name: "Kit Renda Rápida com Perfumes", 
@@ -398,7 +474,33 @@ const Kits = () => (
                 </div>
               )}
               <h3 className={`text-xl font-bold mb-2 ${kit.featured ? 'text-white' : 'text-dark'}`}>{kit.name}</h3>
-              <p className={`text-aux mb-4 whitespace-pre-line ${kit.featured ? 'text-zinc-400' : 'text-zinc-500'}`}>{kit.desc}</p>
+              
+              {kit.headline && (
+                <p className="text-black font-bold text-sm mb-2 tracking-tight">
+                  {kit.headline}
+                </p>
+              )}
+
+              {kit.subheadline && (
+                <p className={`text-sm mb-4 font-medium ${kit.featured ? 'text-zinc-300' : 'text-zinc-600'}`}>
+                  {kit.subheadline}
+                </p>
+              )}
+
+              {kit.desc && !kit.subheadline && (
+                <p className={`text-aux mb-4 whitespace-pre-line ${kit.featured ? 'text-zinc-400' : 'text-zinc-500'}`}>{kit.desc}</p>
+              )}
+
+              {kit.image && (
+                <div className="flex justify-center mb-6">
+                  <img 
+                    src={kit.image} 
+                    alt={kit.name} 
+                    className="w-48 h-48 object-cover rounded-lg shadow-md border border-zinc-200"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              )}
               
               {kit.items && (
                 <ul className="mb-4 space-y-1">
@@ -449,7 +551,7 @@ const Kits = () => (
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                QUERO ESTE KIT
+                {kit.buttonText || "QUERO ESTE KIT"}
               </motion.a>
             </div>
           ))}

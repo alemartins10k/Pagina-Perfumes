@@ -4,12 +4,14 @@ export const ImageAutoSlider = ({
   images: customImages, 
   duration = 40, 
   reverse = false,
-  size = "w-56 h-56"
+  size = "w-56 h-56",
+  glow = false
 }: { 
   images?: string[], 
   duration?: number,
   reverse?: boolean,
-  size?: string
+  size?: string,
+  glow?: boolean
 }) => {
   const images = customImages || [];
   const duplicatedImages = [...images, ...images];
@@ -40,7 +42,7 @@ export const ImageAutoSlider = ({
             {duplicatedImages.map((image, index) => (
               <div
                 key={index}
-                className={`flex-shrink-0 ${size} rounded-md overflow-hidden border border-zinc-200`}
+                className={`flex-shrink-0 ${size} rounded-md overflow-hidden border ${glow ? 'border-white/30 shadow-[0_0_10px_rgba(255,255,255,0.3)]' : 'border-zinc-200'}`}
               >
                 <img
                   src={image}
