@@ -82,7 +82,7 @@ const Navbar = () => (
           x: [0, "-50%"],
         }}
         transition={{
-          duration: 30,
+          duration: 60,
           repeat: Infinity,
           ease: "linear"
         }}
@@ -90,9 +90,8 @@ const Navbar = () => (
       >
         {[1, 2, 3, 4, 5, 6].map((i) => (
           <div key={i} className="flex items-center gap-3">
-            <Crown className="w-5 h-5 text-dark" strokeWidth={2} />
-            <span className="text-lg font-normal text-dark tracking-tighter [animation:neon-pulse_2s_infinite_ease-in-out]">
-              Revenda as Fragâncias mais desejadas do mundo!
+            <span className="text-lg font-black text-dark tracking-tighter [animation:neon-pulse_2s_infinite_ease-in-out]">
+              Renda Rápida com Perfumes
             </span>
           </div>
         ))}
@@ -109,7 +108,7 @@ const Hero = () => (
         animate={{ opacity: 1, y: 0 }}
         className="mb-8"
       >
-        Uma forma simples de fazer pelo menos <span className="text-brand">R$200 por semana</span> vendendo perfumes — mesmo começando com apenas <span className="text-brand">R$240</span>
+        Uma forma simples de fazer pelo menos <span className="text-brand">R$200 por semana</span>
       </motion.h1>
       
       <motion.div 
@@ -118,26 +117,9 @@ const Hero = () => (
         transition={{ delay: 0.2 }}
         className="mb-10 max-w-md mx-auto"
       >
-        <div className="text-zinc-300 text-lg font-medium leading-relaxed space-y-6 flex flex-col items-center sm:items-start max-w-fit mx-auto">
-          <div className="flex flex-col items-center sm:flex-row sm:items-center gap-2 sm:gap-3 text-center sm:text-left">
-            <div className="bg-brand/20 p-1 rounded-full">
-              <Check className="w-4 h-4 text-brand" />
-            </div>
-            <span>Produto de alta aceitação</span>
-          </div>
-          <div className="flex flex-col items-center sm:flex-row sm:items-center gap-2 sm:gap-3 text-center sm:text-left">
-            <div className="bg-brand/20 p-1 rounded-full">
-              <Check className="w-4 h-4 text-brand" />
-            </div>
-            <span>Fácil de demonstrar</span>
-          </div>
-          <div className="flex flex-col items-center sm:flex-row sm:items-center gap-2 sm:gap-3 text-center sm:text-left">
-            <div className="bg-brand/20 p-1 rounded-full shrink-0">
-              <Check className="w-4 h-4 text-brand" />
-            </div>
-            <span>Alta chance de venda na primeira apresentação</span>
-          </div>
-        </div>
+        <p className="text-zinc-300 text-lg font-medium leading-relaxed">
+          Vendendo apenas 1 perfume de <span className="text-brand">R$50 por dia</span>
+        </p>
       </motion.div>
 
       <motion.p
@@ -146,7 +128,7 @@ const Hero = () => (
         transition={{ delay: 0.25 }}
         className="text-zinc-400 text-sm mb-4 flex items-center justify-center gap-2 whitespace-nowrap"
       >
-        🎥 Assista ao vídeo e entenda como funciona
+        Assista o video abaixo para saber como funciona:
       </motion.p>
 
       <motion.div 
@@ -215,21 +197,18 @@ const VisualProof = () => {
     <section className="py-10 section-dark overflow-hidden">
       <div className="mobile-container">
         <FadeInSection>
-          <h2 className="text-center mb-10">
-            <span className="text-brand">50 Fragrâncias</span><br />
-            <span className="text-white">inspiradas nas principais grifes do mundo.</span>
+          <h2 className="text-center mb-4">
+            <span className="text-white">As Mais Famosas Grifes Internacionais.</span>
           </h2>
+          <div className="text-center mb-10">
+            <p className="text-brand text-sm italic">
+              Disponíveis na versão de 15ml e 100ml.
+            </p>
+          </div>
         </FadeInSection>
       </div>
       <div className="w-full">
-        <ImageAutoSlider images={fragranceImages} />
-      </div>
-      <div className="mobile-container text-center mt-6">
-        <FadeInSection>
-          <p className="text-brand text-sm italic">
-            Disponível na versão de 15ml e 100ml.
-          </p>
-        </FadeInSection>
+        <ImageAutoSlider images={fragranceImages} duration={80} />
       </div>
     </section>
   );
@@ -239,21 +218,21 @@ const Quality = () => (
   <section className="section-padding section-dark">
     <div className="mobile-container">
       <FadeInSection className="text-center">
-        <h2 className="mb-10">Qualidade de Grife<br />sem preço de Grife</h2>
+        <h2 className="mb-10">Porque é tão fácil vender os perfumes?</h2>
         <div className="mb-10 card-rounded bg-white/5 border border-white/10 overflow-hidden">
           <motion.img 
-            src="https://i.imgur.com/pPJ7TLK.jpg" 
+            src="https://i.imgur.com/if0cf58.jpg" 
             alt="Detalhe do Perfume" 
             className="w-full aspect-square object-cover"
             referrerPolicy="no-referrer"
-            animate={{ scale: [1, 1.05, 1] }}
+            animate={{ scale: [1, 1.08, 1] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
         <div className="space-y-6 text-left">
           {[
             { icon: <Zap className="text-brand" />, title: "Fixação que Dura o Dia Todo", desc: "33% de concentração de essência, garantindo uma fragrância intensa e duradoura na pele." },
-            { icon: <Award className="text-brand" />, title: "Qualidade de Grife sem preço de Grife", desc: "Fragrâncias inspiradas nas maiores grifes do mundo com um preço que seus clientes compram sem pensar duas vezes." },
+            { icon: <Award className="text-brand" />, title: "Qualidade de Grife", desc: "Fragrâncias inspiradas nas maiores grifes do mundo com um preço que seus clientes compram sem pensar duas vezes." },
             { icon: <ShoppingBag className="text-brand" />, title: "Praticidade no Dia a Dia", desc: "Frasco compacto de 15ml, perfeito para levar no bolso, na bolsa ou em viagens." },
             { icon: <TrendingUp className="text-brand" />, title: "Economia Inteligente", desc: "Até 90% mais barato que o importado. Sem abrir mão do cheiro que você ama." }
           ].map((item, i) => (

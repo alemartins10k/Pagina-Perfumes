@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ImageAutoSlider = ({ images: customImages }: { images?: string[] }) => {
+export const ImageAutoSlider = ({ images: customImages, duration = 40 }: { images?: string[], duration?: number }) => {
   // Default images for the infinite scroll - using Unsplash URLs related to perfumes/luxury
   const defaultImages = [
     "https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=1000&auto=format&fit=crop",
@@ -31,7 +31,7 @@ export const ImageAutoSlider = ({ images: customImages }: { images?: string[] })
         }
 
         .infinite-scroll {
-          animation: scroll-right 20s linear infinite;
+          animation: scroll-right ${duration}s linear infinite;
         }
 
         .scroll-container {
