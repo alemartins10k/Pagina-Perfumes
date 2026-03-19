@@ -160,22 +160,8 @@ const VisualProof = () => {
     "https://i.imgur.com/3jdwSPc.jpeg",
     "https://i.imgur.com/yig3TbV.jpeg",
     "https://i.imgur.com/lZ4ub1i.jpeg",
-    "https://i.imgur.com/kszZisI.jpeg",
-    "https://i.imgur.com/PvOKmPK.jpeg",
-    "https://i.imgur.com/dGECRcO.jpeg",
-    "https://i.imgur.com/lzIk70H.jpeg",
-    "https://i.imgur.com/WruWqRA.jpeg",
-    "https://i.imgur.com/CnyaOIw.jpeg",
-    "https://i.imgur.com/SgAuQhs.jpeg",
-    "https://i.imgur.com/6gqMU2J.jpeg",
-    "https://i.imgur.com/TAH7Ac9.jpeg",
-    "https://i.imgur.com/eXaZ8ah.jpeg",
-    "https://i.imgur.com/R6mPlre.jpeg",
-    "https://i.imgur.com/fUo4wRw.jpeg"
+    "https://i.imgur.com/kszZisI.jpeg"
   ];
-
-  const row1 = fragranceImages.slice(0, 10);
-  const row2 = fragranceImages.slice(10, 19);
 
   return (
     <section className="py-10 bg-black overflow-hidden">
@@ -191,18 +177,11 @@ const VisualProof = () => {
           </div>
         </FadeInSection>
       </div>
-      <div className="w-full space-y-1">
+      <div className="w-full">
         <ImageAutoSlider 
-          images={row1} 
-          duration={20} 
-          size="w-[134px] h-[134px]" 
-          glow={true}
-        />
-        <ImageAutoSlider 
-          images={row2} 
-          duration={20} 
-          reverse={true} 
-          size="w-[134px] h-[134px]" 
+          images={fragranceImages} 
+          duration={30} 
+          size="w-[240px] h-[240px]" 
           glow={true}
         />
       </div>
