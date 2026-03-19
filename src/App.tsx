@@ -73,7 +73,7 @@ const Navbar = () => (
   <nav className="absolute top-0 left-0 right-0 z-50 bg-black py-3 shadow-lg border-b border-zinc-800">
     <div className="flex justify-center items-center relative z-10">
       <div className="flex items-center">
-        <span className="text-lg font-black text-yellow-400 tracking-tighter uppercase">
+        <span className="text-lg font-normal italic text-yellow-400 tracking-tighter">
           Renda Rápida com Perfumes
         </span>
       </div>
@@ -87,12 +87,14 @@ const Hero = () => (
       <motion.h1 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-8 text-[28px] text-zinc-900 font-bold leading-[1.2] tracking-tight"
+        className="mb-8 text-[32px] text-zinc-900 font-black leading-[1.1] tracking-tighter uppercase"
       >
-        Ganhe pelo menos <br />
-        <span className="bg-brand px-1">R$200 por semana</span> <br />
-        <span className="bg-brand px-1">vendendo apenas</span> <br />
-        1 perfume por dia
+        <div className="inline-block bg-dark text-brand px-4 py-1 mb-2 transform -rotate-1 shadow-xl">
+          GANHE PELO MENOS <br />
+          R$200 POR SEMANA
+        </div> <br />
+        VENDENDO APENAS <br />
+        1 PERFUME POR DIA
       </motion.h1>
       
       <motion.div 
@@ -391,35 +393,6 @@ const Earnings = () => {
   );
 };
 
-const EaseOfSale = () => (
-  <section className="section-padding section-dark">
-    <div className="mobile-container">
-      <FadeInSection>
-        <h2 className="text-center mb-10">Por que é tão fácil vender?</h2>
-        <div className="space-y-4">
-          {[
-            { icon: <Heart className="w-5 h-5" />, text: "Produto de desejo imediato" },
-            { icon: <TrendingUp className="w-5 h-5" />, text: "Alta taxa de recompra mensal" },
-            { icon: <Zap className="w-5 h-5" />, text: "Demonstração rápida e eficaz" },
-            { icon: <Users className="w-5 h-5" />, text: "Todo mundo usa e gosta" }
-          ].map((item, i) => (
-            <motion.div 
-              key={i} 
-              initial={{ x: -20, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className={`flex items-center gap-4 p-4 rounded-lg border ${i === 3 ? 'bg-dark text-brand font-bold border-dark shadow-lg' : 'bg-zinc-50 border-zinc-200 text-dark'}`}
-            >
-              <div className="text-brand">{item.icon}</div>
-              <span className="font-semibold">{item.text}</span>
-            </motion.div>
-          ))}
-        </div>
-      </FadeInSection>
-    </div>
-  </section>
-);
 
 const Kits = () => (
   <section id="kits" className="section-padding section-light">
@@ -432,7 +405,7 @@ const Kits = () => (
               name: "KIT PROVAR", 
               headline: "Teste a qualidade antes de começar a revender",
               subheadline: "Sinta na pele a fixação e descubra por que esses perfumes são tão fáceis de vender",
-              image: "https://i.imgur.com/BlNzxdT.jpeg",
+              image: "https://i.imgur.com/ttllGFN.jpg",
               price: "100", 
               priceDetail: "ou 3x de R$35,00",
               whatsappLink: "https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20testar%20o%20Kit%20Provar%20primeiro.",
@@ -496,7 +469,7 @@ const Kits = () => (
                   <img 
                     src={kit.image} 
                     alt={kit.name} 
-                    className="w-48 h-48 object-cover rounded-lg shadow-md border border-zinc-200"
+                    className="w-56 h-56 object-cover rounded-lg shadow-md border border-zinc-200"
                     referrerPolicy="no-referrer"
                   />
                 </div>
@@ -921,7 +894,6 @@ export default function App() {
       <VisualProof />
       <Quality />
       <Earnings />
-      <EaseOfSale />
       <Kits />
       <Security />
       <Franchises />
@@ -932,8 +904,3 @@ export default function App() {
   );
 }
 
-const Users = ({ className }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-  </svg>
-);
