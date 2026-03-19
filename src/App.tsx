@@ -93,20 +93,8 @@ const Hero = () => (
           GANHE PELO MENOS <br />
           R$200 POR SEMANA
         </div> <br />
-        VENDENDO APENAS <br />
-        1 PERFUME POR DIA
+        VENDENDO APENAS 1 PERFUME POR DIA
       </motion.h1>
-      
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="mb-10"
-      >
-        <p className="text-zinc-600 font-bold">
-          Invista pouco e ganhe rápido
-        </p>
-      </motion.div>
 
       <motion.p
         initial={{ opacity: 0 }}
