@@ -70,7 +70,7 @@ const FadeInSection = ({ children, className = "" }: { children: ReactNode, clas
 };
 
 const Navbar = () => (
-  <nav className="absolute top-0 left-0 right-0 z-50 bg-red-600 py-3 shadow-lg border-b border-red-700 overflow-hidden">
+  <nav className="absolute top-0 left-0 right-0 z-50 bg-black py-3 shadow-lg border-b border-zinc-800 overflow-hidden">
     <div className="flex whitespace-nowrap relative z-10">
       <motion.div
         animate={{ 
@@ -85,7 +85,7 @@ const Navbar = () => (
       >
         {[1, 2, 3, 4, 5, 6].map((i) => (
           <div key={i} className="flex items-center gap-3">
-            <span className="text-lg font-black text-white tracking-tighter uppercase">
+            <span className="text-lg font-black text-yellow-400 tracking-tighter uppercase">
               Renda Rápida com Perfumes
             </span>
           </div>
@@ -110,10 +110,10 @@ const Hero = () => (
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="mb-10 max-w-md mx-auto"
+        className="mb-10 max-w-md mx-auto opacity-75"
       >
         <p className="text-zinc-900 text-lg font-bold leading-tight">
-          Vendendo <span className="uppercase">apenas</span> 1 perfume de <span className="text-brand font-bold">R$50 por dia</span>
+          Vendendo apenas 1 perfume de <span className="text-brand font-bold">R$50 por dia</span>
         </p>
       </motion.div>
 
@@ -224,7 +224,11 @@ const Quality = () => (
   <section className="section-padding section-dark">
     <div className="mobile-container">
       <FadeInSection className="text-center">
-        <h2 className="mb-10">Porque é tão fácil vender os perfumes?</h2>
+        <h2 className="mb-4 text-2xl font-bold leading-tight">
+          Fragrâncias com alta proximidade olfativa e fixação prolongada — por até 90% menos que os importados.
+        </h2>
+        <p className="mb-10 text-zinc-500 font-medium italic">Você só precisa borrifar...</p>
+        
         <div className="mb-10 card-rounded bg-zinc-50 border border-zinc-200 overflow-hidden shadow-sm">
           <img 
             src="https://i.imgur.com/N7CDzLa.jpg" 
@@ -233,21 +237,28 @@ const Quality = () => (
             referrerPolicy="no-referrer"
           />
         </div>
-        <div className="space-y-6 text-left">
-          {[
-            { icon: <Zap className="text-brand" />, title: "Fixação que Dura o Dia Todo", desc: "33% de concentração de essência, garantindo uma fragrância intensa e duradoura na pele." },
-            { icon: <Award className="text-brand" />, title: "Qualidade de Grife", desc: "Fragrâncias inspiradas nas maiores grifes do mundo com um preço que seus clientes compram sem pensar duas vezes." },
-            { icon: <ShoppingBag className="text-brand" />, title: "Praticidade no Dia a Dia", desc: "Frasco compacto de 15ml, perfeito para levar no bolso, na bolsa ou em viagens." },
-            { icon: <TrendingUp className="text-brand" />, title: "Economia Inteligente", desc: "Até 90% mais barato que o importado. Sem abrir mão do cheiro que você ama." }
-          ].map((item, i) => (
-            <div key={i} className="flex gap-4">
-              <div className="shrink-0">{item.icon}</div>
-              <div>
-                <h3 className="text-[18px] font-bold mb-1 text-dark">{item.title}</h3>
-                <p className="text-aux text-zinc-600">{item.desc}</p>
+
+        <div className="text-left space-y-6">
+          <p className="text-lg font-bold text-dark">Quando você apresenta o perfume, acontece isso:</p>
+          
+          <div className="space-y-4">
+            {[
+              "O cliente reconhece a fragrância na hora",
+              "Se surpreende com a fixação na pele",
+              "E quando descobre o preço com 90% de economia… dificilmente recusa"
+            ].map((text, i) => (
+              <div key={i} className="flex gap-3 items-start">
+                <div className="mt-1 bg-brand/20 p-1 rounded-full">
+                  <Check className="w-4 h-4 text-brand" strokeWidth={4} />
+                </div>
+                <p className="text-zinc-700 font-medium">{text}</p>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          <p className="pt-4 text-lg font-bold text-brand">
+            👉 É por isso que é um produto tão fácil de vender.
+          </p>
         </div>
       </FadeInSection>
     </div>
