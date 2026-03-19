@@ -152,7 +152,7 @@ const Hero = () => (
           href="https://wa.me/31993935885?text=Ol%C3%A1%20Al%C3%AA!%20Quero%20comprar%20meu%20kit."
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full h-[56px] text-lg font-bold bg-brand text-dark rounded-lg flex items-center justify-center whitespace-nowrap shadow-lg shadow-brand/20"
+          className="w-full h-[56px] text-lg font-bold bg-dark text-brand rounded-lg flex items-center justify-center whitespace-nowrap shadow-lg shadow-brand/10"
           animate={{ 
             scale: [1, 1.05, 1],
             y: [0, -3, 0]
@@ -320,7 +320,7 @@ const EaseOfSale = () => (
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`flex items-center gap-4 p-4 bg-zinc-50 rounded-lg border border-zinc-200 ${i === 3 ? 'text-brand font-bold' : 'text-dark'}`}
+              className={`flex items-center gap-4 p-4 rounded-lg border ${i === 3 ? 'bg-dark text-brand font-bold border-dark shadow-lg' : 'bg-zinc-50 border-zinc-200 text-dark'}`}
             >
               <div className="text-brand">{item.icon}</div>
               <span className="font-semibold">{item.text}</span>
@@ -353,38 +353,42 @@ const Kits = () => (
               ]
             },
             { 
-              name: "Kit Essencial", 
+              name: "Kit Renda Rápida com Perfumes", 
               price: "240", 
-              priceDetail: "No pix ou 12x 24,00 no cartão",
+              priceDetail: "Ou 6x 50,00 no cartão",
               desc: "O melhor custo-benefício.", 
               featured: true,
               whatsappLink: "https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20com%20o%20kit%20de%2012%20perfumes.%20Pode%20me%20ajudar%20a%20escolher%20os%20mais%20vendidos%3F",
               items: [
-                "12 perfumes", 
+                "12 perfumes de 15ml dos Top 20 mais vendidos do portifólio.",
                 "Catalogo Digital Completo",
-                "Fita Olfativa",
+                "Fita Olfativa para Apresentação",
                 "Material Digital para divulgar",
                 "Suporte personalizado"
-              ]
+              ],
+              bonus: {
+                title: "+Brinde de primeiro pedido:",
+                text: "1 perfume extra para uso pessoal"
+              }
             }
           ].map((kit, i) => (
             <div 
               key={i} 
               id={kit.featured ? "kit-essencial" : undefined}
-              className={`p-8 rounded-xl border text-center relative ${kit.featured ? 'border-brand border-2 bg-white shadow-2xl z-10' : 'border-zinc-200 bg-zinc-50'}`}
+              className={`p-8 rounded-xl border text-center relative ${kit.featured ? 'bg-dark text-white border-brand border-2 shadow-2xl z-10' : 'border-zinc-200 bg-zinc-50 text-dark'}`}
             >
               {kit.featured && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand text-dark text-[10px] font-black px-4 py-1 rounded-full uppercase tracking-widest">
                   RECOMENDADO
                 </div>
               )}
-              <h3 className="text-xl font-bold mb-2">{kit.name}</h3>
-              <p className="text-aux text-zinc-500 mb-4 whitespace-pre-line">{kit.desc}</p>
+              <h3 className={`text-xl font-bold mb-2 ${kit.featured ? 'text-white' : 'text-dark'}`}>{kit.name}</h3>
+              <p className={`text-aux mb-4 whitespace-pre-line ${kit.featured ? 'text-zinc-400' : 'text-zinc-500'}`}>{kit.desc}</p>
               
               {kit.items && (
                 <ul className="mb-4 space-y-1">
                   {kit.items.map((item, idx) => (
-                    <li key={idx} className="flex items-center justify-center gap-2 text-sm font-semibold text-zinc-700">
+                    <li key={idx} className={`flex items-center justify-center gap-2 text-sm font-semibold ${kit.featured ? 'text-zinc-200' : 'text-zinc-700'}`}>
                       <Check className={cn("w-4 h-4 flex-shrink-0", kit.featured ? "text-brand" : "text-black")} strokeWidth={3} />
                       {item}
                     </li>
@@ -392,13 +396,20 @@ const Kits = () => (
                 </ul>
               )}
 
+              {kit.bonus && (
+                <div className="mb-6 py-3 border-y border-white/10">
+                  <p className="text-brand font-black text-sm uppercase tracking-tight">{kit.bonus.title}</p>
+                  <p className="text-brand font-bold text-sm">{kit.bonus.text}</p>
+                </div>
+              )}
+
               <div className="mb-8">
                 <div className="flex items-baseline justify-center gap-1">
-                  <span className="text-[14px] font-bold text-zinc-400">R$</span>
-                  <span className="text-[48px] font-black leading-none">{kit.price}</span>
+                  <span className={`text-[14px] font-bold ${kit.featured ? 'text-zinc-500' : 'text-zinc-400'}`}>R$</span>
+                  <span className={`text-[48px] font-black leading-none ${kit.featured ? 'text-white' : 'text-dark'}`}>{kit.price}</span>
                 </div>
                 {kit.priceDetail && (
-                  <p className="text-[11px] font-bold text-zinc-500 mt-2 tracking-tighter">
+                  <p className={`text-[11px] font-bold mt-2 tracking-tighter ${kit.featured ? 'text-zinc-400' : 'text-zinc-500'}`}>
                     {kit.priceDetail}
                   </p>
                 )}
@@ -409,7 +420,7 @@ const Kits = () => (
                 rel="noopener noreferrer"
                 className={cn(
                   "w-full h-[56px] text-lg font-bold flex items-center justify-center rounded-lg transition-all",
-                  kit.featured ? "bg-brand text-dark shadow-lg shadow-brand/20" : "bg-dark text-white border border-white/10"
+                  kit.featured ? "bg-brand text-dark shadow-lg shadow-brand/20" : "bg-dark text-brand border border-brand/20"
                 )}
                 animate={kit.featured ? { 
                   scale: [1, 1.03, 1],
@@ -750,7 +761,7 @@ const FinalCTA = () => (
         >
           <motion.a
             href="#kit-essencial"
-            className="w-full h-[56px] text-lg font-bold mb-6 bg-brand text-dark rounded-lg flex items-center justify-center whitespace-nowrap shadow-lg shadow-brand/20"
+            className="w-full h-[56px] text-lg font-bold mb-6 bg-dark text-brand rounded-lg flex items-center justify-center whitespace-nowrap shadow-lg shadow-brand/10"
             animate={{ 
               scale: [1, 1.08, 1],
               y: [0, -5, 0]

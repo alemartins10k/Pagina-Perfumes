@@ -4,16 +4,16 @@
 @theme {
   --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Montserrat", ui-sans-serif, system-ui, sans-serif;
-  --color-brand: #00A86B; /* Verde Jade para melhor contraste no branco */
+  --color-brand: #facc15; /* Amarelo Vibrante (Yellow 400) */
   --color-dark: #1a1a1a;
-  --color-aqua: #E0FFF4; /* Versão mais clara para fundo */
+  --color-aqua: #fffbeb; /* Versão mais clara para fundo (Yellow 50) */
 
   @keyframes neon-pulse {
     0%, 100% {
-      text-shadow: 0 0 4px rgba(127, 255, 212, 0.4), 0 0 10px rgba(127, 255, 212, 0.2);
+      text-shadow: 0 0 4px rgba(250, 204, 21, 0.4), 0 0 10px rgba(250, 204, 21, 0.2);
     }
     50% {
-      text-shadow: 0 0 10px rgba(127, 255, 212, 0.8), 0 0 20px rgba(127, 255, 212, 0.4);
+      text-shadow: 0 0 10px rgba(250, 204, 21, 0.8), 0 0 20px rgba(250, 204, 21, 0.4);
     }
   }
 
@@ -80,11 +80,11 @@
   }
 
   .btn-primary {
-    @apply h-[56px] w-full flex items-center justify-center rounded-lg bg-brand text-dark text-[18px] font-bold transition-all active:scale-95 shadow-lg shadow-brand/20;
+    @apply h-[56px] w-full flex items-center justify-center rounded-lg bg-dark text-brand text-[18px] font-bold transition-all active:scale-95 shadow-lg shadow-brand/10;
   }
 
   .btn-dark {
-    @apply h-[56px] w-full flex items-center justify-center rounded-lg bg-dark text-white text-[18px] font-bold transition-all active:scale-95 shadow-lg;
+    @apply h-[56px] w-full flex items-center justify-center rounded-lg bg-dark text-brand text-[18px] font-bold transition-all active:scale-95 shadow-lg;
   }
 
   .card-rounded {
