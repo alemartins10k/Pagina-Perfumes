@@ -89,9 +89,10 @@ const Hero = () => (
         animate={{ opacity: 1, y: 0 }}
         className="mb-8 text-[28px] text-zinc-900 font-bold leading-[1.2] tracking-tight"
       >
-        Uma forma simples de fazer <br />
-        pelo menos <span className="bg-brand px-1">R$200 por semana</span> <br />
-        vendendo apenas 1 perfume por dia
+        Ganhe pelo menos <br />
+        <span className="bg-brand px-1">R$200 por semana</span> <br />
+        <span className="bg-brand px-1">vendendo apenas</span> <br />
+        1 perfume por dia
       </motion.h1>
       
       <motion.div 
@@ -101,7 +102,7 @@ const Hero = () => (
         className="mb-10"
       >
         <p className="text-zinc-600 font-bold">
-          Com baixo investimento e sem precisar de experiência.
+          Invista pouco e ganhe rápido
         </p>
       </motion.div>
 
