@@ -87,19 +87,21 @@ const Hero = () => (
       <motion.h1 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-1 text-[22px] text-black font-bold leading-tight"
+        className="mb-8 text-[28px] text-zinc-900 font-bold leading-[1.2] tracking-tight"
       >
-        Uma forma simples de fazer pelo menos <span className="bg-brand px-1">R$200 por semana</span>
+        Uma forma simples de fazer <br />
+        pelo menos <span className="bg-brand px-1">R$200 por semana</span> <br />
+        vendendo apenas 1 perfume por dia
       </motion.h1>
       
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="mb-10 max-w-lg mx-auto"
+        className="mb-10"
       >
-        <p className="text-[22px] font-bold leading-tight text-black">
-          <span className="bg-brand px-1">Vendendo apenas 1 perfume</span> de R$50 por dia
+        <p className="text-zinc-600 font-bold">
+          Com baixo investimento e sem precisar de experiência.
         </p>
       </motion.div>
 
@@ -211,7 +213,7 @@ const Quality = () => (
     <div className="mobile-container">
       <FadeInSection className="text-center">
         <h2 className="mb-2 text-2xl font-bold leading-tight text-black">
-          Por que isso vende tão fácil?
+          Por que é tão fácil vender?
         </h2>
         <p className="mb-6 text-zinc-600 font-bold">
           Você não precisa convencer ninguém.
@@ -254,9 +256,8 @@ const Quality = () => (
         </div>
 
         <div className="bg-zinc-900 rounded-xl p-6 shadow-lg">
-          <p className="font-bold text-brand text-lg italic leading-relaxed">
-            “Perfume não é produto difícil.<br />
-            É desejo. Você só precisa oferecer.”
+          <p className="font-bold text-brand text-xl leading-relaxed">
+            Você só precisa demonstrar.
           </p>
         </div>
       </FadeInSection>
@@ -305,7 +306,7 @@ const EaseOfSale = () => (
   <section className="section-padding section-dark">
     <div className="mobile-container">
       <FadeInSection>
-        <h2 className="text-center mb-10">Por que é fácil vender?</h2>
+        <h2 className="text-center mb-10">Por que é tão fácil vender?</h2>
         <div className="space-y-4">
           {[
             { icon: <Heart className="w-5 h-5" />, text: "Produto de desejo imediato" },
