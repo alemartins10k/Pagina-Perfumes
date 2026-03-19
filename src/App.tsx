@@ -70,12 +70,7 @@ const FadeInSection = ({ children, className = "" }: { children: ReactNode, clas
 };
 
 const Navbar = () => (
-  <nav className="absolute top-0 left-0 right-0 z-50 bg-aqua/80 backdrop-blur-md py-3 shadow-[0_0_20px_rgba(127,255,212,0.3)] border-b border-aqua/30 overflow-hidden">
-    {/* Efeito de linha de scan futurista */}
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent w-1/2 [animation:scanline_3s_infinite_linear]" />
-    </div>
-    
+  <nav className="absolute top-0 left-0 right-0 z-50 bg-red-600 py-3 shadow-lg border-b border-red-700 overflow-hidden">
     <div className="flex whitespace-nowrap relative z-10">
       <motion.div
         animate={{ 
@@ -90,7 +85,7 @@ const Navbar = () => (
       >
         {[1, 2, 3, 4, 5, 6].map((i) => (
           <div key={i} className="flex items-center gap-3">
-            <span className="text-lg font-black text-dark tracking-tighter [animation:neon-pulse_2s_infinite_ease-in-out]">
+            <span className="text-lg font-black text-white tracking-tighter uppercase">
               Renda Rápida com Perfumes
             </span>
           </div>
@@ -106,7 +101,7 @@ const Hero = () => (
       <motion.h1 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-8"
+        className="mb-2"
       >
         Uma forma simples de fazer pelo menos <span className="text-brand">R$200 por semana</span>
       </motion.h1>
@@ -117,8 +112,8 @@ const Hero = () => (
         transition={{ delay: 0.2 }}
         className="mb-10 max-w-md mx-auto"
       >
-        <p className="text-zinc-300 text-lg font-medium leading-relaxed">
-          Vendendo apenas 1 perfume de <span className="text-brand">R$50 por dia</span>
+        <p className="text-zinc-900 text-lg font-bold leading-tight">
+          Vendendo <span className="uppercase">apenas</span> 1 perfume de <span className="text-brand font-bold">R$50 por dia</span>
         </p>
       </motion.div>
 
@@ -126,7 +121,7 @@ const Hero = () => (
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.25 }}
-        className="text-zinc-400 text-sm mb-4 flex items-center justify-center gap-2 whitespace-nowrap"
+        className="text-zinc-500 text-sm mb-4 flex items-center justify-center gap-2 whitespace-nowrap"
       >
         Assista o video abaixo para saber como funciona:
       </motion.p>
@@ -198,10 +193,10 @@ const VisualProof = () => {
       <div className="mobile-container">
         <FadeInSection>
           <h2 className="text-center mb-4">
-            <span className="text-white">As Mais Famosas Grifes Internacionais.</span>
+            <span className="text-dark">As Mais Famosas Grifes Internacionais.</span>
           </h2>
           <div className="text-center mb-10">
-            <p className="text-brand text-sm italic">
+            <p className="text-brand font-bold text-sm italic">
               Disponíveis na versão de 15ml e 100ml.
             </p>
           </div>
@@ -219,14 +214,12 @@ const Quality = () => (
     <div className="mobile-container">
       <FadeInSection className="text-center">
         <h2 className="mb-10">Porque é tão fácil vender os perfumes?</h2>
-        <div className="mb-10 card-rounded bg-white/5 border border-white/10 overflow-hidden">
-          <motion.img 
-            src="https://i.imgur.com/if0cf58.jpg" 
+        <div className="mb-10 card-rounded bg-zinc-50 border border-zinc-200 overflow-hidden shadow-sm">
+          <img 
+            src="https://i.imgur.com/N7CDzLa.jpg" 
             alt="Detalhe do Perfume" 
             className="w-full aspect-square object-cover"
             referrerPolicy="no-referrer"
-            animate={{ scale: [1, 1.08, 1] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
         <div className="space-y-6 text-left">
@@ -239,8 +232,8 @@ const Quality = () => (
             <div key={i} className="flex gap-4">
               <div className="shrink-0">{item.icon}</div>
               <div>
-                <h3 className="text-[18px] font-bold mb-1">{item.title}</h3>
-                <p className="text-aux text-zinc-400">{item.desc}</p>
+                <h3 className="text-[18px] font-bold mb-1 text-dark">{item.title}</h3>
+                <p className="text-aux text-zinc-600">{item.desc}</p>
               </div>
             </div>
           ))}
@@ -305,7 +298,7 @@ const EaseOfSale = () => (
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`flex items-center gap-4 p-4 bg-white/5 rounded-lg border border-white/10 ${i === 3 ? 'text-brand' : ''}`}
+              className={`flex items-center gap-4 p-4 bg-zinc-50 rounded-lg border border-zinc-200 ${i === 3 ? 'text-brand font-bold' : 'text-dark'}`}
             >
               <div className="text-brand">{item.icon}</div>
               <span className="font-semibold">{item.text}</span>
@@ -434,7 +427,7 @@ const Security = () => (
               <div className="w-10 h-10 rounded-full bg-brand/10 flex items-center justify-center text-brand">
                 {item.icon}
               </div>
-              <span className="font-medium text-zinc-300">{item.text}</span>
+              <span className="font-medium text-zinc-700">{item.text}</span>
             </div>
           ))}
         </div>
@@ -684,14 +677,14 @@ const FAQ = () => {
           {faqs.map((faq, i) => (
             <motion.div
               key={i}
-              className="border border-white/5 rounded-xl overflow-hidden bg-zinc-900/50"
+              className="border border-zinc-200 rounded-xl overflow-hidden bg-zinc-50"
               initial={false}
             >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full p-5 flex items-center justify-between text-left transition-colors hover:bg-white/5"
+                className="w-full p-5 flex items-center justify-between text-left transition-colors hover:bg-zinc-100"
               >
-                <span className="font-bold text-zinc-200">{faq.question}</span>
+                <span className="font-bold text-zinc-800">{faq.question}</span>
                 <motion.div
                   animate={{ rotate: openIndex === i ? 180 : 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -708,7 +701,7 @@ const FAQ = () => {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                   >
-                    <div className="p-5 pt-0 text-zinc-400 text-sm leading-relaxed border-t border-white/5">
+                    <div className="p-5 pt-0 text-zinc-600 text-sm leading-relaxed border-t border-zinc-200">
                       {faq.answer}
                     </div>
                   </motion.div>
@@ -761,10 +754,10 @@ const FinalCTA = () => (
 );
 
 const Footer = () => (
-  <footer className="py-6 bg-dark border-t border-white/5 text-center">
-    <div className="mobile-container flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[10px] text-zinc-600 uppercase tracking-wider">
-      <span className="font-black text-white/20">Bortoletto & Atlântica Natural</span>
-      <span className="text-white/10">•</span>
+  <footer className="py-6 bg-zinc-50 border-t border-zinc-200 text-center">
+    <div className="mobile-container flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[10px] text-zinc-500 uppercase tracking-wider">
+      <span className="font-black text-dark/40">Bortoletto & Atlântica Natural</span>
+      <span className="text-dark/10">•</span>
       <span>© 2026 Todos os direitos reservados</span>
     </div>
   </footer>
