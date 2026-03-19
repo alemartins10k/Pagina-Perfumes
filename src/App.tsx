@@ -185,7 +185,7 @@ const VisualProof = () => {
             <span className="text-dark">As Mais Famosas Grifes Internacionais.</span>
           </h2>
           <div className="text-center mb-10">
-            <p className="text-brand font-bold text-sm italic">
+            <p className="text-black font-bold text-sm italic">
               Disponíveis na versão de 15ml e 100ml.
             </p>
           </div>
@@ -195,13 +195,13 @@ const VisualProof = () => {
         <ImageAutoSlider 
           images={row1} 
           duration={20} 
-          size="w-24 h-24" 
+          size="w-[134px] h-[134px]" 
         />
         <ImageAutoSlider 
           images={row2} 
           duration={20} 
           reverse={true} 
-          size="w-24 h-24" 
+          size="w-[134px] h-[134px]" 
         />
       </div>
     </section>
@@ -228,21 +228,28 @@ const Quality = () => (
             <div className="flex-shrink-0">
               <Heart className="w-6 h-6 text-brand" />
             </div>
-            <p className="font-bold text-zinc-900 leading-tight">👉 Mesmo impacto</p>
+            <p className="font-bold text-zinc-900 leading-tight">Mesmo impacto</p>
           </div>
 
           <div className="bg-white border border-zinc-200 rounded-xl p-5 flex items-center gap-4 shadow-sm">
             <div className="flex-shrink-0">
               <TrendingUp className="w-6 h-6 text-brand" />
             </div>
-            <p className="font-bold text-zinc-900 leading-tight">👉 Até 90% mais barato</p>
+            <p className="font-bold text-zinc-900 leading-tight">Até 90% mais barato</p>
           </div>
 
           <div className="bg-white border border-zinc-200 rounded-xl p-5 flex items-center gap-4 shadow-sm">
             <div className="flex-shrink-0">
               <Zap className="w-6 h-6 text-brand" />
             </div>
-            <p className="font-bold text-zinc-900 leading-tight">👉 Fixação que dura o dia todo</p>
+            <p className="font-bold text-zinc-900 leading-tight">Fixação que dura o dia todo</p>
+          </div>
+
+          <div className="bg-black border border-zinc-800 rounded-xl p-5 flex items-center gap-4 shadow-sm">
+            <div className="flex-shrink-0">
+              <Zap className="w-6 h-6 text-yellow-400" />
+            </div>
+            <p className="font-bold text-yellow-400 leading-tight">Confira os preços das grifes abaixo:</p>
           </div>
         </div>
 
@@ -255,9 +262,10 @@ const Quality = () => (
           />
         </div>
 
-        <div className="bg-zinc-900 rounded-xl p-6 shadow-lg">
-          <p className="font-bold text-brand text-xl leading-relaxed">
-            Você só precisa demonstrar.
+        <div className="py-4">
+          <p className="font-bold text-black text-lg leading-relaxed">
+            Os perfumes vendem sozinho...<br />
+            Você só precisa oferecer.
           </p>
         </div>
       </FadeInSection>
@@ -270,7 +278,13 @@ const Earnings = () => (
     <div className="mobile-container">
       <FadeInSection className="text-center">
         <h2 className="mb-4">Simulação de Ganhos</h2>
-        <p className="text-zinc-500 mb-10 text-aux">Veja quanto você pode lucrar mensalmente.</p>
+        
+        <div className="mb-10 bg-brand/5 border border-brand/10 rounded-2xl p-6">
+          <p className="text-zinc-900 font-black text-xl leading-tight uppercase tracking-tight">
+            Faça pelo menos <span className="text-brand">R$200 por semana</span><br />
+            <span className="text-zinc-500 text-sm font-bold tracking-normal lowercase">vendendo apenas 1 perfume por dia</span>
+          </p>
+        </div>
         
         <div className="space-y-6">
           {[
