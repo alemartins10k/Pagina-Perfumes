@@ -73,8 +73,8 @@ const Navbar = () => (
   <nav className="absolute top-0 left-0 right-0 z-50 bg-black py-3 shadow-lg border-b border-zinc-800">
     <div className="flex justify-center items-center relative z-10">
       <div className="flex items-center">
-        <span className="text-lg font-normal italic text-yellow-400 tracking-tighter">
-          Renda Rápida com Perfumes
+        <span className="text-sm font-display font-bold text-yellow-400 uppercase tracking-widest">
+          Saiba mais assistindo o video abaixo
         </span>
       </div>
     </div>
@@ -87,29 +87,31 @@ const Hero = () => (
       <motion.h1 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-8 text-[32px] text-zinc-900 font-black leading-[1.1] tracking-tighter uppercase"
+        className="mb-6 text-[32px] text-zinc-900 font-display font-black leading-[1.1] tracking-tighter uppercase"
       >
-        <div className="inline-block bg-dark text-brand px-4 py-1 mb-2 transform -rotate-1 shadow-xl">
-          GANHE PELO MENOS <br />
-          R$200 POR SEMANA
-        </div> <br />
-        VENDENDO APENAS 1 PERFUME POR DIA
+        REVENDA FRAGÂNCIAS IMPORTADAS <br />
+        <span className="text-brand bg-dark px-2">QUE TODOS DESEJAM</span>
       </motion.h1>
 
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.25 }}
-        className="text-zinc-500 text-sm mb-4 flex items-center justify-center gap-2 whitespace-nowrap"
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="mb-8"
       >
-        Assista o video abaixo para saber como funciona:
-      </motion.p>
+        <p className="text-zinc-800 font-bold text-lg leading-tight mb-2">
+          Faça R$200 reais por semana vendendo apenas 1 perfume por dia.
+        </p>
+        <p className="text-zinc-500 font-medium text-sm">
+          Compre por R$20 e venda por R$50
+        </p>
+      </motion.div>
 
       <motion.div 
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.3 }}
-        className="relative aspect-video rounded-xl overflow-hidden mb-10 bg-zinc-900 shadow-2xl border border-white/10"
+        className="relative aspect-video rounded-xl overflow-hidden mb-8 bg-zinc-900 shadow-2xl border border-white/10"
       >
         <iframe
           className="w-full h-full"
@@ -127,11 +129,26 @@ const Hero = () => (
         transition={{ delay: 0.4 }}
         className="w-full max-w-sm mx-auto"
       >
+        <div className="text-left space-y-2 mb-8 px-4">
+          <p className="text-zinc-800 font-bold text-sm flex items-center gap-2">
+            <span className="text-green-600">✔️</span> Fragâncias Importadas Desejadas
+          </p>
+          <p className="text-zinc-800 font-bold text-sm flex items-center gap-2">
+            <span className="text-green-600">✔️</span> Mesmo Impacto Olfativo
+          </p>
+          <p className="text-zinc-800 font-bold text-sm flex items-center gap-2">
+            <span className="text-green-600">✔️</span> Longa duração na pele ( 12 horas )
+          </p>
+          <p className="text-zinc-800 font-bold text-sm flex items-center gap-2">
+            <span className="text-green-600">✔️</span> Todo mundo usa!
+          </p>
+        </div>
+
         <motion.a
           href="https://wa.me/31993935885?text=Ol%C3%A1%20Al%C3%AA!%20Quero%20comprar%20meu%20kit."
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full h-[56px] text-lg font-bold bg-dark text-brand rounded-lg flex items-center justify-center whitespace-nowrap shadow-lg shadow-brand/10"
+          className="w-full h-[56px] text-lg font-display font-bold bg-dark text-brand rounded-lg flex items-center justify-center whitespace-nowrap shadow-lg shadow-brand/10"
           animate={{ 
             scale: [1, 1.05, 1],
             y: [0, -3, 0]
@@ -279,9 +296,9 @@ const Earnings = () => {
               <div className="flex justify-between items-end mb-6">
                 <div className="text-left">
                   <p className="text-[10px] uppercase tracking-widest text-brand font-black mb-1">VOCÊ VENDE</p>
-                  <div className="text-4xl font-black flex items-baseline gap-2">
+                  <div className="text-4xl font-display font-black flex items-baseline gap-2">
                     {salesPerDay} 
-                    <span className="text-sm font-bold text-zinc-500 uppercase">perfumes / dia</span>
+                    <span className="text-sm font-sans font-bold text-zinc-500 uppercase">perfumes / dia</span>
                   </div>
                 </div>
               </div>
@@ -299,11 +316,11 @@ const Earnings = () => {
               <div className="grid grid-cols-2 gap-4 mb-8">
                 <div className="bg-black/40 border border-white/5 p-4 rounded-2xl">
                   <p className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold mb-1">LUCRO SEMANAL</p>
-                  <p className="text-2xl font-black text-brand">R$ {weeklyProfit.toLocaleString('pt-BR')}</p>
+                  <p className="text-2xl font-display font-black text-brand">R$ {weeklyProfit.toLocaleString('pt-BR')}</p>
                 </div>
                 <div className="bg-black/40 border border-white/5 p-4 rounded-2xl">
                   <p className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold mb-1">LUCRO MENSAL</p>
-                  <p className="text-2xl font-black text-brand">R$ {monthlyProfit.toLocaleString('pt-BR')}</p>
+                  <p className="text-2xl font-display font-black text-brand">R$ {monthlyProfit.toLocaleString('pt-BR')}</p>
                 </div>
               </div>
 
@@ -374,7 +391,7 @@ const Kits = () => (
               subheadline: "Sinta na pele a fixação e descubra por que esses perfumes são tão fáceis de vender",
               image: "https://i.imgur.com/ttllGFN.jpg",
               price: "100", 
-              priceDetail: "ou 3x de R$35,00",
+              priceDetail: "3x de R$35,00",
               whatsappLink: "https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20testar%20o%20Kit%20Provar%20primeiro.",
               items: [
                 "3 perfumes entre os mais vendidos", 
@@ -385,13 +402,13 @@ const Kits = () => (
             },
             { 
               name: "Kit Renda Rápida com Perfumes", 
-              price: "240", 
-              priceDetail: "Ou 6x 50,00 no cartão",
-              desc: "O melhor custo-benefício.", 
+              price: "260", 
+              priceDetail: "12x de 26",
+              desc: "Fature R$600 com a venda desse kit Inicial.", 
               featured: true,
               whatsappLink: "https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20com%20o%20kit%20de%2012%20perfumes.%20Pode%20me%20ajudar%20a%20escolher%20os%20mais%20vendidos%3F",
               items: [
-                "12 perfumes de 15ml dos Top 20 mais vendidos do portifólio.",
+                "12 perfumes dos mais vendidos",
                 "Catalogo Digital Completo",
                 "Fita Olfativa para Apresentação",
                 "Material Digital para divulgar",
@@ -409,11 +426,11 @@ const Kits = () => (
               className={`p-8 rounded-xl border text-center relative ${kit.featured ? 'bg-dark text-white border-brand border-2 shadow-2xl z-10' : 'border-zinc-200 bg-zinc-50 text-dark'}`}
             >
               {kit.featured && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand text-dark text-[10px] font-black px-4 py-1 rounded-full uppercase tracking-widest">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand text-dark text-[10px] font-display font-black px-4 py-1 rounded-full uppercase tracking-widest">
                   RECOMENDADO
                 </div>
               )}
-              <h3 className={`text-xl font-bold mb-2 ${kit.featured ? 'text-white' : 'text-dark'}`}>{kit.name}</h3>
+              <h3 className={`text-xl font-display font-bold mb-2 ${kit.featured ? 'text-white' : 'text-dark'}`}>{kit.name}</h3>
               
               {kit.headline && (
                 <p className="text-black font-bold text-sm mb-2 tracking-tight">
@@ -462,21 +479,18 @@ const Kits = () => (
 
               <div className="mb-8">
                 <div className="flex items-baseline justify-center gap-1">
-                  <span className={`text-[14px] font-bold ${kit.featured ? 'text-zinc-500' : 'text-zinc-400'}`}>R$</span>
-                  <span className={`text-[48px] font-black leading-none ${kit.featured ? 'text-white' : 'text-dark'}`}>{kit.price}</span>
+                  <span className={`text-[48px] font-display font-black leading-none ${kit.featured ? 'text-white' : 'text-dark'}`}>{kit.priceDetail}</span>
                 </div>
-                {kit.priceDetail && (
-                  <p className={`text-[11px] font-bold mt-2 tracking-tighter ${kit.featured ? 'text-zinc-400' : 'text-zinc-500'}`}>
-                    {kit.priceDetail}
-                  </p>
-                )}
+                <p className={`text-[14px] font-bold mt-2 tracking-tighter ${kit.featured ? 'text-zinc-400' : 'text-zinc-500'}`}>
+                  ou R$ {kit.price},00
+                </p>
               </div>
               <motion.a
                 href={kit.whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
-                  "w-full h-[56px] text-lg font-bold flex items-center justify-center rounded-lg transition-all",
+                  "w-full h-[56px] text-lg font-display font-bold flex items-center justify-center rounded-lg transition-all",
                   kit.featured ? "bg-brand text-dark shadow-lg shadow-brand/20" : "bg-dark text-brand border border-brand/20"
                 )}
                 animate={kit.featured ? { 
@@ -491,7 +505,7 @@ const Kits = () => (
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {kit.buttonText || "QUERO ESTE KIT"}
+                {kit.buttonText || "QUERO COMEÇAR A REVENDER"}
               </motion.a>
             </div>
           ))}
@@ -774,7 +788,7 @@ const FAQ = () => {
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 className="w-full p-5 flex items-center justify-between text-left transition-colors hover:bg-zinc-100"
               >
-                <span className="font-bold text-zinc-800">{faq.question}</span>
+                <span className="font-display font-bold text-zinc-800">{faq.question}</span>
                 <motion.div
                   animate={{ rotate: openIndex === i ? 180 : 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -846,7 +860,7 @@ const FinalCTA = () => (
 const Footer = () => (
   <footer className="py-6 bg-zinc-50 border-t border-zinc-200 text-center">
     <div className="mobile-container flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[10px] text-zinc-500 uppercase tracking-wider">
-      <span className="font-black text-dark/40">Bortoletto & Atlântica Natural</span>
+      <span className="font-display font-black text-dark/40">Bortoletto & Atlântica Natural</span>
       <span className="text-dark/10">•</span>
       <span>© 2026 Todos os direitos reservados</span>
     </div>
