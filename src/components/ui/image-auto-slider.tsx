@@ -42,7 +42,7 @@ export const ImageAutoSlider = ({
             {duplicatedImages.map((image, index) => (
               <div
                 key={index}
-                className={`flex-shrink-0 ${size} rounded-md overflow-hidden border ${glow ? 'border-white/30 shadow-[0_0_10px_rgba(255,255,255,0.3)]' : 'border-zinc-200'}`}
+                className={`flex-shrink-0 ${size} rounded-2xl overflow-hidden border ${glow ? 'border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.1)]' : 'border-white/10'}`}
               >
                 <img
                   src={image}

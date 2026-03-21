@@ -20,7 +20,7 @@ import {
   Crown,
   ChevronDown
 } from "lucide-react";
-import { useRef, useEffect, useState, ReactNode } from "react";
+import { useRef, useEffect, useState, ReactNode, RefObject } from "react";
 import { cn } from "./lib/utils";
 import { Button as MovingBorderButton } from "./components/ui/moving-border";
 import { ImageAutoSlider } from "./components/ui/image-auto-slider";
@@ -206,71 +206,6 @@ const VisualProof = () => {
   );
 };
 
-const Quality = () => (
-  <section className="section-padding section-dark">
-    <div className="mobile-container">
-      <FadeInSection className="text-center">
-        <h2 className="mb-2 text-2xl font-bold leading-tight text-black">
-          Por que é tão fácil vender?
-        </h2>
-        <p className="mb-6 text-zinc-600 font-bold">
-          Você não precisa convencer ninguém.
-        </p>
-        
-        <p className="mb-8 text-zinc-900 font-bold text-lg leading-tight">
-          O cliente sente → reconhece → compara o preço → compra.
-        </p>
-
-        <div className="text-left space-y-3 mb-10">
-          <div className="bg-white border border-zinc-200 rounded-xl p-5 flex items-center gap-4 shadow-sm">
-            <div className="flex-shrink-0">
-              <Heart className="w-6 h-6 text-brand" />
-            </div>
-            <p className="font-bold text-zinc-900 leading-tight">Mesmo impacto</p>
-          </div>
-
-          <div className="bg-white border border-zinc-200 rounded-xl p-5 flex items-center gap-4 shadow-sm">
-            <div className="flex-shrink-0">
-              <TrendingUp className="w-6 h-6 text-brand" />
-            </div>
-            <p className="font-bold text-zinc-900 leading-tight">Até 90% mais barato</p>
-          </div>
-
-          <div className="bg-white border border-zinc-200 rounded-xl p-5 flex items-center gap-4 shadow-sm">
-            <div className="flex-shrink-0">
-              <Zap className="w-6 h-6 text-brand" />
-            </div>
-            <p className="font-bold text-zinc-900 leading-tight">Fixação que dura o dia todo</p>
-          </div>
-
-          <div className="bg-black border border-zinc-800 rounded-xl p-5 flex items-center gap-4 shadow-sm">
-            <div className="flex-shrink-0">
-              <Zap className="w-6 h-6 text-yellow-400" />
-            </div>
-            <p className="font-bold text-yellow-400 leading-tight">Confira os preços das grifes abaixo:</p>
-          </div>
-        </div>
-
-        <div className="mb-10 card-rounded bg-zinc-50 border border-zinc-200 overflow-hidden shadow-sm">
-          <img 
-            src="https://i.imgur.com/N7CDzLa.jpg" 
-            alt="Detalhe do Perfume" 
-            className="w-full aspect-square object-cover"
-            referrerPolicy="no-referrer"
-          />
-        </div>
-
-        <div className="py-4">
-          <p className="font-bold text-black text-lg leading-relaxed">
-            Os perfumes vendem sozinho...<br />
-            Você só precisa oferecer.
-          </p>
-        </div>
-      </FadeInSection>
-    </div>
-  </section>
-);
-
 const Earnings = () => {
   const [salesPerDay, setSalesPerDay] = useState(2);
   const profitPerUnit = 30;
@@ -313,32 +248,32 @@ const Earnings = () => {
                 className="w-full h-3 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-brand mb-10"
               />
 
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                <div className="bg-black/40 border border-white/5 p-4 rounded-2xl">
-                  <p className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold mb-1">LUCRO SEMANAL</p>
-                  <p className="text-2xl font-display font-black text-brand">R$ {weeklyProfit.toLocaleString('pt-BR')}</p>
+              <div className="flex flex-col gap-3 mb-8">
+                <div className="bg-black/60 border border-white/5 p-5 rounded-3xl text-center">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-black mb-1">LUCRO SEMANAL</p>
+                  <p className="text-3xl font-display font-black text-white">R$ {weeklyProfit.toLocaleString('pt-BR')}</p>
                 </div>
-                <div className="bg-black/40 border border-white/5 p-4 rounded-2xl">
-                  <p className="text-[9px] uppercase tracking-widest text-zinc-500 font-bold mb-1">LUCRO MENSAL</p>
-                  <p className="text-2xl font-display font-black text-brand">R$ {monthlyProfit.toLocaleString('pt-BR')}</p>
+                <div className="bg-black/60 border border-white/5 p-5 rounded-3xl text-center">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-500 font-black mb-1">LUCRO MENSAL</p>
+                  <p className="text-3xl font-display font-black text-brand">R$ {monthlyProfit.toLocaleString('pt-BR')}</p>
                 </div>
               </div>
 
-              <div className="pt-6 border-t border-white/5">
+              <div className="pt-8 border-t border-white/5">
                 <div className="flex items-center justify-between text-sm">
-                  <div className="flex flex-col items-start">
-                    <span className="text-zinc-500 text-[10px] font-bold uppercase">Compra</span>
-                    <span className="font-bold">R$ 20,00</span>
-                  </div>
-                  <div className="w-8 h-[1px] bg-zinc-800" />
                   <div className="flex flex-col items-center">
-                    <span className="text-zinc-500 text-[10px] font-bold uppercase">Venda</span>
-                    <span className="font-bold">R$ 50,00</span>
+                    <span className="text-zinc-500 text-[10px] font-black uppercase tracking-widest mb-1">Compra</span>
+                    <span className="font-black text-lg">R$ 20,00</span>
                   </div>
-                  <div className="w-8 h-[1px] bg-zinc-800" />
-                  <div className="flex flex-col items-end">
-                    <span className="text-brand text-[10px] font-bold uppercase">Lucro/Unid.</span>
-                    <span className="font-bold text-brand">R$ 30,00</span>
+                  <div className="w-6 h-[1px] bg-zinc-800" />
+                  <div className="flex flex-col items-center">
+                    <span className="text-zinc-500 text-[10px] font-black uppercase tracking-widest mb-1">Venda</span>
+                    <span className="font-black text-lg">R$ 50,00</span>
+                  </div>
+                  <div className="w-6 h-[1px] bg-zinc-800" />
+                  <div className="flex flex-col items-center">
+                    <span className="text-brand text-[10px] font-black uppercase tracking-widest mb-1">Lucro/Unid.</span>
+                    <span className="font-black text-lg text-brand">R$ 30,00</span>
                   </div>
                 </div>
               </div>
@@ -386,26 +321,12 @@ const Kits = () => (
         <div className="space-y-8">
           {[
             { 
-              name: "KIT PROVAR", 
-              headline: "Teste a qualidade antes de começar a revender",
-              subheadline: "Sinta na pele a fixação e descubra por que esses perfumes são tão fáceis de vender",
-              image: "https://i.imgur.com/ttllGFN.jpg",
-              price: "100", 
-              priceDetail: "3x de R$35,00",
-              whatsappLink: "https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20testar%20o%20Kit%20Provar%20primeiro.",
-              items: [
-                "3 perfumes entre os mais vendidos", 
-                "Catalogo Digital Completo",
-                "Suporte"
-              ],
-              buttonText: "QUERO TESTAR PRIMEIRO"
-            },
-            { 
               name: "Kit Renda Rápida com Perfumes", 
               price: "260", 
               priceDetail: "12x de 26",
               desc: "Fature R$600 com a venda desse kit Inicial.", 
               featured: true,
+              image: "https://i.imgur.com/1a9AVtX.jpg",
               whatsappLink: "https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20com%20o%20kit%20de%2012%20perfumes.%20Pode%20me%20ajudar%20a%20escolher%20os%20mais%20vendidos%3F",
               items: [
                 "12 perfumes dos mais vendidos",
@@ -417,7 +338,23 @@ const Kits = () => (
               bonus: {
                 title: "+Brinde de primeiro pedido:",
                 text: "1 perfume extra para uso pessoal"
-              }
+              },
+              buttonText: "Kit 12 perfumes | QUERO LUCRAR"
+            },
+            { 
+              name: "KIT PROVAR", 
+              headline: "Teste a qualidade antes de começar a revender",
+              subheadline: "Escolha 3 perfumes para sentir na pele a fixação e descubra por que esses perfumes são tão fáceis de vender",
+              image: "https://i.imgur.com/mV4jKQC.jpg",
+              price: "100", 
+              priceDetail: "3x de R$35,00",
+              whatsappLink: "https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20testar%20o%20Kit%20Provar%20primeiro.",
+              items: [
+                "3 perfumes entre os mais vendidos", 
+                "Catalogo Digital Completo",
+                "Suporte"
+              ],
+              buttonText: "Kit 3 perfumes | QUERO PROVAR"
             }
           ].map((kit, i) => (
             <div 
@@ -490,7 +427,7 @@ const Kits = () => (
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
-                  "w-full h-[56px] text-lg font-display font-bold flex items-center justify-center rounded-lg transition-all",
+                  "w-full h-[56px] text-[13px] font-display font-black flex items-center justify-center rounded-lg transition-all uppercase tracking-tight",
                   kit.featured ? "bg-brand text-dark shadow-lg shadow-brand/20" : "bg-dark text-brand border border-brand/20"
                 )}
                 animate={kit.featured ? { 
@@ -516,22 +453,38 @@ const Kits = () => (
 );
 
 const Security = () => (
-  <section className="section-padding section-dark">
+  <section className="section-padding bg-black">
     <div className="mobile-container">
-      <FadeInSection>
-        <h2 className="text-center mb-10">Segurança e Confiança</h2>
-        <div className="space-y-6">
+      <FadeInSection className="text-center">
+        <h2 className="mb-4 text-white leading-tight">Você pode comprar com segurança e retirar pessoalmente</h2>
+        <p className="text-zinc-400 font-bold mb-10">Além disso, enviamos para todo o Brasil com código de rastreio.</p>
+        
+        <div className="space-y-8 text-left">
           {[
-            { icon: <MapPin />, text: "Loja física em Guarapari" },
-            { icon: <MapPin />, text: "Loja física em Cariacica" },
-            { icon: <Truck />, text: "Envio para todo Brasil" },
-            { icon: <Zap />, text: "Recebe de 1 a 3 dias úteis no Espírito Santo" }
+            { 
+              title: "Guarapari", 
+              subtitle: "Rua São Pedro, 292 • Muquiçaba",
+              icon: <MapPin className="w-6 h-6" />
+            },
+            { 
+              title: "Cariacica", 
+              subtitle: "Shopping Moxuara TorreA",
+              icon: <MapPin className="w-6 h-6" />
+            },
+            { 
+              title: "Envio para todo Brasil", 
+              subtitle: "Código de rastreio em todos os pedidos",
+              icon: <Truck className="w-6 h-6" />
+            }
           ].map((item, i) => (
-            <div key={i} className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-full bg-brand/10 flex items-center justify-center text-brand">
+            <div key={i} className="flex items-start gap-4 p-5 bg-zinc-900 rounded-2xl border border-white/5 shadow-sm">
+              <div className="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center text-brand flex-shrink-0">
                 {item.icon}
               </div>
-              <span className="font-medium text-zinc-700">{item.text}</span>
+              <div>
+                <h4 className="font-display font-black text-white uppercase tracking-tight text-sm">{item.title}</h4>
+                <p className="text-zinc-400 text-sm font-medium">{item.subtitle}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -542,29 +495,22 @@ const Security = () => (
 
 const Franchises = () => {
   const franchiseImages = [
-    "https://i.imgur.com/JSwSNbG.jpeg",
-    "https://i.imgur.com/c55HUXD.jpeg",
-    "https://i.imgur.com/S96XSza.jpeg",
-    "https://i.imgur.com/bLkNLif.jpeg",
-    "https://i.imgur.com/isKVZ8S.jpeg",
-    "https://i.imgur.com/8oOUxSO.jpeg",
-    "https://i.imgur.com/sakOyO5.jpeg",
-    "https://i.imgur.com/xKWzkadh.jpeg",
-    "https://i.imgur.com/y2h1AAUh.jpeg",
-    "https://i.imgur.com/6Ck6bjs.jpeg",
-    "https://i.imgur.com/85WoEgC.jpeg",
-    "https://i.imgur.com/CY1smtl.jpeg",
-    "https://i.imgur.com/PcvUc39.jpeg",
-    "https://i.imgur.com/NuqYpio.jpeg"
+    "https://i.imgur.com/dr9Z4E6.jpg",
+    "https://i.imgur.com/Hdtklrz.jpg",
+    "https://i.imgur.com/PoZPphi.jpg",
+    "https://i.imgur.com/S1lYa8V.jpg",
+    "https://i.imgur.com/hFaJ81T.jpg",
+    "https://i.imgur.com/QKwmCZJ.jpg",
+    "https://i.imgur.com/BN3WdxM.jpg",
+    "https://i.imgur.com/R1WEh4v.jpg",
+    "https://i.imgur.com/1lzgIiT.jpg",
+    "https://i.imgur.com/YqZqS56.jpg",
+    "https://i.imgur.com/N6oCurF.jpg",
+    "https://i.imgur.com/yCDGAem.jpg"
   ];
 
   return (
-    <section className="py-6 section-dark overflow-hidden">
-      <div className="mobile-container">
-        <FadeInSection>
-          <h2 className="text-center mb-6">Conheça nossas franquias e faça parte do time</h2>
-        </FadeInSection>
-      </div>
+    <section className="py-6 bg-black overflow-hidden">
       <div className="w-full">
         <ImageAutoSlider images={franchiseImages} />
       </div>
@@ -577,10 +523,10 @@ const FAQ = () => {
 
   const faqs = [
     {
-      question: "É confiável comprar com vocês?",
+      question: "Como faço para receber os perfumes?",
       answer: (
         <>
-          <p>Sim. Você pode comprar com segurança e, se preferir, retirar pessoalmente:</p>
+          <p>Você pode comprar com segurança e retirar pessoalmente:</p>
           <div className="mt-4 space-y-2">
             <p className="flex items-start gap-2">
               <MapPin className="w-4 h-4 text-brand mt-1 flex-shrink-0" />
@@ -588,7 +534,7 @@ const FAQ = () => {
             </p>
             <p className="flex items-start gap-2">
               <MapPin className="w-4 h-4 text-brand mt-1 flex-shrink-0" />
-              <span>Cariacica — Shopping Moxuara</span>
+              <span>Cariacica — Shopping Moxuara TorreA</span>
             </p>
           </div>
           <p className="mt-4">Além disso, enviamos para todo o Brasil com código de rastreio.</p>
@@ -770,25 +716,25 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="section-padding section-dark">
+    <section className="section-padding bg-black">
       <div className="mobile-container">
         <FadeInSection className="text-center mb-10">
-          <h2 className="mb-4">❓ Dúvidas Frequentes</h2>
-          <p className="text-zinc-500">Tudo o que você precisa saber para começar com segurança.</p>
+          <h2 className="mb-4 text-white">❓ Dúvidas Frequentes</h2>
+          <p className="text-zinc-400">Tudo o que você precisa saber para começar com segurança.</p>
         </FadeInSection>
 
         <div className="space-y-4">
           {faqs.map((faq, i) => (
             <motion.div
               key={i}
-              className="border border-zinc-200 rounded-xl overflow-hidden bg-zinc-50"
+              className="border border-white/5 rounded-xl overflow-hidden bg-zinc-900"
               initial={false}
             >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full p-5 flex items-center justify-between text-left transition-colors hover:bg-zinc-100"
+                className="w-full p-5 flex items-center justify-between text-left transition-colors hover:bg-zinc-800"
               >
-                <span className="font-display font-bold text-zinc-800">{faq.question}</span>
+                <span className="font-display font-bold text-white">{faq.question}</span>
                 <motion.div
                   animate={{ rotate: openIndex === i ? 180 : 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -805,7 +751,7 @@ const FAQ = () => {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                   >
-                    <div className="p-5 pt-0 text-zinc-600 text-sm leading-relaxed border-t border-zinc-200">
+                    <div className="p-5 pt-0 text-zinc-400 text-sm leading-relaxed border-t border-white/5">
                       {faq.answer}
                     </div>
                   </motion.div>
@@ -819,36 +765,51 @@ const FAQ = () => {
   );
 };
 
-const FinalCTA = () => (
-  <section className="section-padding section-light text-center">
+const FinalCTA = ({ innerRef }: { innerRef?: RefObject<HTMLDivElement | null> }) => (
+  <section ref={innerRef} className="section-padding section-light text-center">
     <div className="mobile-container">
       <FadeInSection>
-        <h2 className="mb-6">“Comece a gerar renda com um produto que todo mundo já compra.”</h2>
-        <p className="text-zinc-500 mb-10">
-          👇 Escolha seu kit e comece agora.
-        </p>
-        <motion.div
-          className="w-full"
-        >
+        <h2 className="mb-6 text-2xl font-display font-black uppercase tracking-tight">Então agora você tem duas opções:</h2>
+        <div className="text-zinc-600 mb-10 space-y-2 font-medium">
+          <p>Ou começa direto com o kit completo e já inicia suas vendas…</p>
+          <p>Ou testa primeiro com o Kit Provar.</p>
+          <p className="pt-4 text-dark font-bold">Escolha abaixo como deseja iniciar e comece hoje mesmo.</p>
+        </div>
+        
+        <div className="flex flex-col gap-4 w-full max-w-sm mx-auto">
           <motion.a
-            href="#kit-essencial"
-            className="w-full h-[56px] text-lg font-bold mb-6 bg-dark text-brand rounded-lg flex items-center justify-center whitespace-nowrap shadow-lg shadow-brand/10"
+            href="https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20com%20o%20kit%20de%2012%20perfumes.%20Pode%20me%20ajudar%20a%20escolher%20os%20mais%20vendidos%3F"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full h-[64px] text-[13px] font-display font-black bg-dark text-brand rounded-xl flex items-center justify-center text-center px-4 shadow-xl shadow-brand/10 uppercase tracking-tight"
             animate={{ 
-              scale: [1, 1.08, 1],
-              y: [0, -5, 0]
+              scale: [1, 1.05, 1],
+              y: [0, -3, 0]
             }}
             transition={{
-              duration: 1.5,
+              duration: 2,
               repeat: Infinity,
               ease: "easeInOut"
             }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            QUERO COMEÇAR AGORA
+            Kit 12 perfumes | QUERO LUCRAR
           </motion.a>
-        </motion.div>
-        <div className="flex items-center justify-center gap-2 text-zinc-400">
+
+          <motion.a
+            href="https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20testar%20o%20Kit%20Provar%20primeiro."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full h-[64px] text-[13px] font-display font-black bg-zinc-100 text-dark border-2 border-dark rounded-xl flex items-center justify-center text-center px-4 uppercase tracking-tight"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Kit 3 perfumes | QUERO PROVAR
+          </motion.a>
+        </div>
+
+        <div className="mt-10 flex items-center justify-center gap-2 text-zinc-400">
           <ShieldCheck className="w-4 h-4" />
           <span className="text-[12px] font-bold uppercase tracking-widest">Compra 100% Segura</span>
         </div>
@@ -867,20 +828,46 @@ const Footer = () => (
   </footer>
 );
 
+const FloatingWhatsApp = ({ show }: { show: boolean }) => (
+  <AnimatePresence>
+    {show && (
+      <motion.a
+        href="https://wa.me/31993935885?text=Ol%C3%A1!%20Ainda%20tenho%20d%C3%BAvidas%20sobre%20os%20kits."
+        target="_blank"
+        rel="noopener noreferrer"
+        initial={{ opacity: 0, scale: 0.5, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.5, y: 20 }}
+        className="fixed bottom-6 right-6 z-[100] bg-[#25D366] text-white px-6 py-3 rounded-full font-bold shadow-2xl flex items-center gap-2"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+        Ainda tem dúvida
+      </motion.a>
+    )}
+  </AnimatePresence>
+);
+
 export default function App() {
+  const finalCtaRef = useRef<HTMLDivElement>(null);
+  const isFinalCtaInView = useInView(finalCtaRef, { amount: 0.1 });
+
   return (
     <div className="min-h-screen selection:bg-brand/30">
       <Navbar />
       <Hero />
       <VisualProof />
-      <Quality />
       <Earnings />
       <Kits />
       <Security />
       <Franchises />
       <FAQ />
-      <FinalCTA />
+      <FinalCTA innerRef={finalCtaRef} />
       <Footer />
+      <FloatingWhatsApp show={isFinalCtaInView} />
     </div>
   );
 }
