@@ -33,22 +33,21 @@ const AnimatedCounter = ({ value, duration = 2 }: { value: number, duration?: nu
 
   useEffect(() => {
     if (isInView) {
-      let start = 0;
+      let startTime: number | null = null;
       const end = value;
-      const totalFrames = duration * 60;
-      const increment = end / totalFrames;
       
-      const timer = setInterval(() => {
-        start += increment;
-        if (start >= end) {
-          setCount(end);
-          clearInterval(timer);
-        } else {
-          setCount(Math.floor(start));
+      const animate = (currentTime: number) => {
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
+        
+        setCount(Math.floor(progress * end));
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate);
         }
-      }, 1000 / 60);
+      };
       
-      return () => clearInterval(timer);
+      requestAnimationFrame(animate);
     }
   }, [isInView, value, duration]);
 
@@ -73,7 +72,7 @@ const Navbar = () => (
   <nav className="absolute top-0 left-0 right-0 z-50 bg-black py-3 shadow-lg border-b border-zinc-800">
     <div className="flex justify-center items-center relative z-10">
       <div className="flex items-center">
-        <span className="text-sm font-display font-bold text-yellow-400 uppercase tracking-widest">
+        <span className="text-sm font-display font-bold text-brand uppercase tracking-widest">
           Saiba mais assistindo o video abaixo
         </span>
       </div>
@@ -120,6 +119,7 @@ const Hero = () => (
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
+          loading="lazy"
         ></iframe>
       </motion.div>
 
@@ -170,14 +170,13 @@ const Hero = () => (
 
 const VisualProof = () => {
   const fragranceImages = [
-    "https://i.imgur.com/fYwVO9x.jpeg",
-    "https://i.imgur.com/tBNBn9n.jpeg",
-    "https://i.imgur.com/SY37oZg.jpeg",
-    "https://i.imgur.com/XAxZcT9.jpeg",
-    "https://i.imgur.com/3jdwSPc.jpeg",
-    "https://i.imgur.com/yig3TbV.jpeg",
-    "https://i.imgur.com/lZ4ub1i.jpeg",
-    "https://i.imgur.com/kszZisI.jpeg"
+    "https://i.imgur.com/t4B5P7E.jpeg",
+    "https://i.imgur.com/RiP62HE.jpeg",
+    "https://i.imgur.com/uA74xUp.jpeg",
+    "https://i.imgur.com/d84II7c.jpeg",
+    "https://i.imgur.com/WpJtGf0.jpeg",
+    "https://i.imgur.com/DXGyZOG.jpeg",
+    "https://i.imgur.com/xtQAx1R.jpeg"
   ];
 
   return (
@@ -188,7 +187,7 @@ const VisualProof = () => {
             <span className="text-white">As Mais Famosas Grifes Internacionais.</span>
           </h2>
           <div className="text-center mb-10">
-            <p className="text-yellow-400 font-bold text-sm italic">
+            <p className="text-brand font-bold text-sm italic">
               Disponíveis na versão de 15ml e 100ml.
             </p>
           </div>
@@ -198,7 +197,7 @@ const VisualProof = () => {
         <ImageAutoSlider 
           images={fragranceImages} 
           duration={30} 
-          size="w-[240px] h-[240px]" 
+          size="w-[345px] h-[345px]" 
           glow={true}
         />
       </div>
@@ -297,9 +296,9 @@ const Earnings = () => {
           </div>
 
           <div className="mt-10 p-6 bg-brand/10 border border-brand/20 rounded-2xl">
-            <p className="text-white font-bold leading-tight">
-              Vendendo apenas <span className="text-brand">1 por dia...</span><br />
-              <span className="text-lg">Você já pode fazer mais de <span className="text-brand">R$ 200 por semana.</span></span>
+            <p className="text-white font-bold leading-tight text-xl">
+              Faça <span className="text-brand">R$ 200 por semana</span><br />
+              vendendo apenas <span className="text-brand">1 perfume por dia.</span>
             </p>
           </div>
           
@@ -392,6 +391,7 @@ const Kits = () => (
                     alt={kit.name} 
                     className="w-56 h-56 object-cover rounded-lg shadow-md border border-zinc-200"
                     referrerPolicy="no-referrer"
+                    loading="lazy"
                   />
                 </div>
               )}
