@@ -325,7 +325,6 @@ const Kits = () => (
               priceDetail: "12x de 26",
               desc: "Fature R$600 com a venda desse kit Inicial.", 
               featured: true,
-              image: "https://i.imgur.com/1a9AVtX.jpg",
               whatsappLink: "https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20com%20o%20kit%20de%2012%20perfumes.%20Pode%20me%20ajudar%20a%20escolher%20os%20mais%20vendidos%3F",
               items: [
                 "12 perfumes dos mais vendidos",
@@ -344,7 +343,6 @@ const Kits = () => (
               name: "KIT PROVAR", 
               headline: "Teste a qualidade antes de começar a revender",
               subheadline: "Escolha 3 perfumes para sentir na pele a fixação e descubra por que esses perfumes são tão fáceis de vender",
-              image: "https://i.imgur.com/mV4jKQC.jpg",
               price: "100", 
               priceDetail: "3x de R$35,00",
               whatsappLink: "https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20testar%20o%20Kit%20Provar%20primeiro.",
@@ -384,18 +382,6 @@ const Kits = () => (
                 <p className={`text-aux mb-4 whitespace-pre-line ${kit.featured ? 'text-zinc-400' : 'text-zinc-500'}`}>{kit.desc}</p>
               )}
 
-              {kit.image && (
-                <div className="flex justify-center mb-6">
-                  <img 
-                    src={kit.image} 
-                    alt={kit.name} 
-                    className="w-56 h-56 object-cover rounded-lg shadow-md border border-zinc-200"
-                    referrerPolicy="no-referrer"
-                    loading="lazy"
-                  />
-                </div>
-              )}
-              
               {kit.items && (
                 <ul className="mb-4 space-y-1">
                   {kit.items.map((item, idx) => (
