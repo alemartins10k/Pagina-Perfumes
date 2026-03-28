@@ -69,10 +69,10 @@ const FadeInSection = ({ children, className = "" }: { children: ReactNode, clas
 };
 
 const Navbar = () => (
-  <nav className="absolute top-0 left-0 right-0 z-50 bg-black py-3 shadow-lg border-b border-zinc-800">
+  <nav className="absolute top-0 left-0 right-0 z-50 bg-red-600 py-3 shadow-lg border-b border-red-700">
     <div className="flex justify-center items-center relative z-10">
       <div className="flex items-center">
-        <span className="text-sm font-display font-bold text-brand uppercase tracking-widest">
+        <span className="text-sm font-display font-bold text-white uppercase tracking-widest">
           Saiba mais assistindo o video abaixo
         </span>
       </div>
