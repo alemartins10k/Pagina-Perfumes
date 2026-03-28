@@ -81,12 +81,12 @@ const Navbar = () => (
 );
 
 const Hero = () => (
-  <section className="section-padding section-dark pt-20">
+  <section className="section-padding bg-white pt-20">
     <div className="mobile-container text-center">
       <motion.h1 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-6 text-[32px] text-zinc-900 font-display font-black leading-[1.1] tracking-tighter uppercase"
+        className="mb-6 text-[32px] text-black font-display font-black leading-[1.1] tracking-tighter uppercase"
       >
         REVENDA FRAGÂNCIAS IMPORTADAS <br />
         <span className="text-brand bg-dark px-2">QUE TODOS DESEJAM</span>
@@ -98,7 +98,7 @@ const Hero = () => (
         transition={{ delay: 0.1 }}
         className="mb-8"
       >
-        <p className="text-zinc-800 font-bold text-lg leading-tight mb-2">
+        <p className="text-black font-bold text-lg leading-tight mb-2">
           Faça R$200 reais por semana vendendo apenas 1 perfume por dia.
         </p>
         <p className="text-zinc-500 font-medium text-sm">
