@@ -88,7 +88,9 @@ const Hero = () => (
         animate={{ opacity: 1, y: 0 }}
         className="mb-6 text-[24px] text-black font-display font-black leading-[1.2] tracking-tighter uppercase"
       >
-        Ganhe <span className="text-brand bg-dark px-2">R$200 a R$500</span> por semana revendendo fragrâncias importadas que custam apenas R$50 para o cliente
+        GANHE <span className="text-brand bg-dark px-2">R$200 A R$500</span> <br />
+        POR SEMANA VENDENDO FRAGRÂNCIAS IMPORTADAS <br />
+        POR APENAS R$50
       </motion.h1>
 
       <motion.div
