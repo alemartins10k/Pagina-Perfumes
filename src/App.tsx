@@ -86,10 +86,9 @@ const Hero = () => (
       <motion.h1 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-6 text-[32px] text-black font-display font-black leading-[1.1] tracking-tighter uppercase"
+        className="mb-6 text-[24px] text-black font-display font-black leading-[1.2] tracking-tighter uppercase"
       >
-        REVENDA FRAGÂNCIAS IMPORTADAS <br />
-        <span className="text-brand bg-dark px-2">QUE TODOS DESEJAM</span>
+        Ganhe <span className="text-brand bg-dark px-2">R$200 a R$500</span> por semana revendendo fragrâncias importadas que custam apenas R$50 para o cliente
       </motion.h1>
 
       <motion.div
@@ -99,10 +98,7 @@ const Hero = () => (
         className="mb-8"
       >
         <p className="text-black font-bold text-lg leading-tight mb-2">
-          Faça R$200 reais por semana vendendo apenas 1 perfume por dia.
-        </p>
-        <p className="text-zinc-500 font-medium text-sm">
-          Compre por R$20 e venda por R$50
+          Sem experiência, sem loja, começando com R$240
         </p>
       </motion.div>
 
