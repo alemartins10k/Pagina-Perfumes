@@ -112,8 +112,8 @@ const Hero = () => (
       >
         <iframe
           className="w-full h-full"
-          src="https://www.youtube.com/embed/ScMzIvxBSi4?rel=0&modestbranding=1&showinfo=0"
-          title="Vídeo de Apresentação Bortoletto"
+          src="https://www.youtube.com/embed/2aBh10WpwZw?rel=0&modestbranding=1&showinfo=0"
+          title="Vídeo de Apresentação"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
