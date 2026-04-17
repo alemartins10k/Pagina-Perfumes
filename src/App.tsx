@@ -112,7 +112,7 @@ const Hero = () => (
       >
         <iframe
           className="w-full h-full"
-          src="https://www.youtube.com/embed/2aBh10WpwZw?rel=0&modestbranding=1&showinfo=0"
+          src="https://www.youtube.com/embed/2aBh10WpwZw"
           title="Vídeo de Apresentação"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -146,6 +146,7 @@ const Hero = () => (
           href="https://wa.me/31993935885?text=Ol%C3%A1%20Al%C3%AA!%20Quero%20comprar%20meu%20kit."
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => { if (typeof window !== 'undefined' && (window as any).fbq) (window as any).fbq('track', 'Lead'); }}
           className="w-full h-[56px] text-lg font-display font-bold bg-dark text-brand rounded-lg flex items-center justify-center whitespace-nowrap shadow-lg shadow-brand/10"
           animate={{ 
             scale: [1, 1.05, 1],
@@ -410,6 +411,7 @@ const Kits = () => (
                 href={kit.whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => { if (typeof window !== 'undefined' && (window as any).fbq) (window as any).fbq('track', 'Lead', { content_name: kit.name }); }}
                 className={cn(
                   "w-full h-[56px] text-[13px] font-display font-black flex items-center justify-center rounded-lg transition-all uppercase tracking-tight",
                   kit.featured ? "bg-brand text-dark shadow-lg shadow-brand/20" : "bg-dark text-brand border border-brand/20"
@@ -765,6 +767,7 @@ const FinalCTA = ({ innerRef }: { innerRef?: RefObject<HTMLDivElement | null> })
             href="https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20com%20o%20kit%20de%2012%20perfumes.%20Pode%20me%20ajudar%20a%20escolher%20os%20mais%20vendidos%3F"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => { if (typeof window !== 'undefined' && (window as any).fbq) (window as any).fbq('track', 'Lead', { content_name: 'Kit 12 perfumes' }); }}
             className="w-full h-[64px] text-[13px] font-display font-black bg-dark text-brand rounded-xl flex items-center justify-center text-center px-4 shadow-xl shadow-brand/10 uppercase tracking-tight"
             animate={{ 
               scale: [1, 1.05, 1],
@@ -785,6 +788,7 @@ const FinalCTA = ({ innerRef }: { innerRef?: RefObject<HTMLDivElement | null> })
             href="https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20testar%20o%20Kit%20Provar%20primeiro."
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => { if (typeof window !== 'undefined' && (window as any).fbq) (window as any).fbq('track', 'Lead', { content_name: 'Kit 3 perfumes' }); }}
             className="w-full h-[64px] text-[13px] font-display font-black bg-zinc-100 text-dark border-2 border-dark rounded-xl flex items-center justify-center text-center px-4 uppercase tracking-tight"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -819,6 +823,7 @@ const FloatingWhatsApp = ({ show }: { show: boolean }) => (
         href="https://wa.me/31993935885?text=Ol%C3%A1!%20Ainda%20tenho%20d%C3%BAvidas%20sobre%20os%20kits."
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => { if (typeof window !== 'undefined' && (window as any).fbq) (window as any).fbq('track', 'Contact'); }}
         initial={{ opacity: 0, scale: 0.5, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.5, y: 20 }}
