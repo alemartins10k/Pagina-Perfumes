@@ -31,19 +31,42 @@ const ExitIntentPopup = () => {
   const [hasShown, setHasShown] = useState(false);
 
   useEffect(() => {
+    // 1. Detecção para Desktop (Mouse saindo pelo topo)
     const handleMouseLeave = (e: MouseEvent) => {
-      // Detecta quando o mouse sai pelo topo da página (padrão de intenção de fechar aba)
       if (e.clientY <= 0 && !hasShown) {
         setIsVisible(true);
         setHasShown(true);
       }
     };
 
+    // 2. Detecção para Mobile/Desktop (Botão Voltar)
+    // Criamos uma entrada "falsa" no histórico.
+    // Assim, se o usuário clicar em voltar, ele ativa o evento popstate em vez de sair da página.
+    window.history.pushState({ exitIntent: true }, "");
+
+    const handlePopState = (event: PopStateEvent) => {
+      if (!hasShown) {
+        // Bloqueamos a saída e mostramos o popup
+        setIsVisible(true);
+        setHasShown(true);
+        
+        // Colocamos o usuário de volta no estado atual para que ele precise clicar de novo para sair
+        window.history.pushState({ exitIntent: true }, "");
+      }
+    };
+
     document.addEventListener("mouseleave", handleMouseLeave);
-    return () => document.removeEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("popstate", handlePopState);
+    };
   }, [hasShown]);
 
-  const closePopup = () => setIsVisible(false);
+  const closePopup = () => {
+    setIsVisible(false);
+  };
 
   return (
     <AnimatePresence>
