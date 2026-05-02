@@ -31,37 +31,38 @@ const ExitIntentPopup = () => {
   const [hasShown, setHasShown] = useState(false);
 
   useEffect(() => {
-    // 1. Detecção para Desktop (Mouse saindo pelo topo)
-    const handleMouseLeave = (e: MouseEvent) => {
-      if (e.clientY <= 0 && !hasShown) {
-        setIsVisible(true);
-        setHasShown(true);
-      }
-    };
+    // Adicionamos um pequeno delay para evitar que o popup apareça 
+    // imediatamente se o mouse já estiver fora da janela na carga da página
+    const timer = setTimeout(() => {
+      // 1. Detecção para Desktop (Mouse saindo pelo topo)
+      const handleMouseLeave = (e: MouseEvent) => {
+        if (e.clientY <= 0 && !hasShown) {
+          setIsVisible(true);
+          setHasShown(true);
+        }
+      };
 
-    // 2. Detecção para Mobile/Desktop (Botão Voltar)
-    // Criamos uma entrada "falsa" no histórico.
-    // Assim, se o usuário clicar em voltar, ele ativa o evento popstate em vez de sair da página.
-    window.history.pushState({ exitIntent: true }, "");
+      // 2. Detecção para Mobile/Desktop (Botão Voltar)
+      window.history.pushState({ exitIntent: true }, "");
 
-    const handlePopState = (event: PopStateEvent) => {
-      if (!hasShown) {
-        // Bloqueamos a saída e mostramos o popup
-        setIsVisible(true);
-        setHasShown(true);
-        
-        // Colocamos o usuário de volta no estado atual para que ele precise clicar de novo para sair
-        window.history.pushState({ exitIntent: true }, "");
-      }
-    };
+      const handlePopState = (event: PopStateEvent) => {
+        if (!hasShown) {
+          setIsVisible(true);
+          setHasShown(true);
+          window.history.pushState({ exitIntent: true }, "");
+        }
+      };
 
-    document.addEventListener("mouseleave", handleMouseLeave);
-    window.addEventListener("popstate", handlePopState);
+      document.addEventListener("mouseleave", handleMouseLeave);
+      window.addEventListener("popstate", handlePopState);
 
-    return () => {
-      document.removeEventListener("mouseleave", handleMouseLeave);
-      window.removeEventListener("popstate", handlePopState);
-    };
+      return () => {
+        document.removeEventListener("mouseleave", handleMouseLeave);
+        window.removeEventListener("popstate", handlePopState);
+      };
+    }, 2000); // 2 segundos de delay para ativar o monitoramento
+
+    return () => clearTimeout(timer);
   }, [hasShown]);
 
   const closePopup = () => {
@@ -83,52 +84,54 @@ const ExitIntentPopup = () => {
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-[360px] bg-white rounded-3xl p-8 text-center shadow-2xl"
+            className="relative w-full max-w-[400px] bg-white rounded-3xl overflow-hidden shadow-2xl"
           >
             <button 
               onClick={closePopup}
-              className="absolute top-4 right-4 p-2 text-zinc-400 hover:text-zinc-900 transition-colors"
+              className="absolute top-4 right-4 p-2 bg-black/20 backdrop-blur-md rounded-full text-white hover:bg-black/40 transition-colors z-10"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
 
-            <div className="text-4xl mb-4">⚠️</div>
-            <h3 className="text-xl font-display font-black text-dark mb-4 uppercase tracking-tight">
-              Espera um segundo…
-            </h3>
-            
-            <div className="space-y-4 mb-8">
-              <p className="text-zinc-600 font-medium text-sm leading-relaxed">
-                Vi que você estava vendo como começar a revender os perfumes.
+            <img 
+              src="https://i.imgur.com/XYaNdel.jpeg" 
+              alt="Alê" 
+              className="w-full aspect-square object-cover"
+            />
+
+            <div className="p-8 text-center">
+              <h3 className="text-xl font-display font-black text-dark mb-4 leading-tight">
+                Opa! Ainda tem alguma dúvida de como iniciar?
+              </h3>
+              
+              <p className="text-zinc-600 font-medium text-sm mb-8">
+                Clique no botão abaixo e fale diretamente comigo.
               </p>
-              <p className="text-zinc-600 font-medium text-sm leading-relaxed">
-                Se ficou alguma dúvida ou quiser entender melhor o lucro e os kits, me chama no WhatsApp que eu te explico rapidinho.
-              </p>
+
+              <motion.a
+                href="https://wa.me/31993935885?text=Ol%C3%A1%20Al%C3%AA!%20Ainda%20tenho%20d%C3%BAvidas%20antes%20de%20sair.%20Pode%20me%20ajudar%3F"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  if (typeof window !== 'undefined' && (window as any).fbq) {
+                    (window as any).fbq('track', 'Contact', { content_name: 'Exit Intent Popup' });
+                  }
+                  closePopup();
+                }}
+                className="w-full h-[60px] bg-[#25D366] text-white rounded-2xl flex items-center justify-center font-display font-black text-sm uppercase tracking-tight shadow-lg shadow-green-500/20"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                👉 Falar com o Alê
+              </motion.a>
+              
+              <button 
+                onClick={closePopup}
+                className="mt-6 text-[10px] text-zinc-400 uppercase font-bold tracking-widest hover:text-zinc-600 transition-colors"
+              >
+                Não, obrigado.
+              </button>
             </div>
-
-            <motion.a
-              href="https://wa.me/31993935885?text=Ol%C3%A1!%20Vi%20a%20p%C3%A1gina%20e%20fiquei%20com%20uma%20d%C3%BAvida%20antes%20de%20sair."
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => {
-                if (typeof window !== 'undefined' && (window as any).fbq) {
-                  (window as any).fbq('track', 'Contact', { content_name: 'Exit Intent Popup' });
-                }
-                closePopup();
-              }}
-              className="w-full h-[60px] bg-[#25D366] text-white rounded-2xl flex items-center justify-center font-display font-black text-sm uppercase tracking-tight shadow-lg shadow-green-500/20"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              👉 Falar no WhatsApp
-            </motion.a>
-            
-            <button 
-              onClick={closePopup}
-              className="mt-6 text-[10px] text-zinc-400 uppercase font-bold tracking-widest hover:text-zinc-600 transition-colors"
-            >
-              Não, obrigado. Quero sair.
-            </button>
           </motion.div>
         </div>
       )}
