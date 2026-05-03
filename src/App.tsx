@@ -112,7 +112,7 @@ const ExitIntentPopup = ({ videoStarted }: { videoStarted: boolean }) => {
               </p>
 
               <motion.a
-                href="https://wa.me/5531993935885?text=Ol%C3%A1%20Al%C3%AA!%20Vi%20que%20posso%20lucrar%20at%C3%A9%20mil%20reais%20por%20m%C3%AAs%20revendendo%20e%20quero%20come%C3%A7ar%20agora."
+                href="https://api.whatsapp.com/send?phone=5531993935885&text=Ol%C3%A1%20Al%C3%AA!%20Vi%20que%20posso%20lucrar%20at%C3%A9%20mil%20reais%20por%20m%C3%AAs%20revendendo%20e%20quero%20come%C3%A7ar%20agora."
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => {
@@ -292,10 +292,10 @@ const Hero = ({ isVideoStarted, onVideoStart }: { isVideoStarted: boolean, onVid
         </div>
 
         <motion.a
-          href="https://wa.me/31993935885?text=Ol%C3%A1%20Al%C3%AA!%20Quero%20comprar%20meu%20kit."
+          href="https://api.whatsapp.com/send?phone=5531993935885&text=Ol%C3%A1%20Al%C3%AA!%20Quero%20comprar%20meu%20kit."
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => { if (typeof window !== 'undefined' && (window as any).fbq) (window as any).fbq('track', 'Lead'); }}
+          onClick={() => { if (typeof window !== 'undefined' && (window as any).fbq) (window as any).fbq('track', 'Lead', { content_name: 'Botao_Hero' }); }}
           className="w-full h-[56px] text-lg font-display font-bold bg-dark text-brand rounded-lg flex items-center justify-center whitespace-nowrap shadow-lg shadow-brand/10"
           animate={{ 
             scale: [1, 1.05, 1],
@@ -473,7 +473,7 @@ const Kits = () => (
               priceDetail: "12x de 26",
               desc: "Fature R$600 com a venda desse kit Inicial.", 
               featured: true,
-              whatsappLink: "https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20com%20o%20kit%20de%2012%20perfumes.%20Pode%20me%20ajudar%20a%20escolher%20os%20mais%20vendidos%3F",
+              whatsappLink: "https://api.whatsapp.com/send?phone=5531993935885&text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20com%20o%20kit%20de%2012%20perfumes.%20Pode%20me%20ajudar%20a%20escolher%20os%20mais%20vendidos%3F",
               items: [
                 "12 perfumes dos mais vendidos",
                 "Catalogo Digital Completo",
@@ -493,7 +493,7 @@ const Kits = () => (
               subheadline: "Escolha 3 perfumes para sentir na pele a fixação e descubra por que esses perfumes são tão fáceis de vender",
               price: "100", 
               priceDetail: "3x de R$35,00",
-              whatsappLink: "https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20testar%20o%20Kit%20Provar%20primeiro.",
+              whatsappLink: "https://api.whatsapp.com/send?phone=5531993935885&text=Ol%C3%A1!%20Quero%20testar%20o%20Kit%20Provar%20primeiro.",
               items: [
                 "3 perfumes entre os mais vendidos", 
                 "Catalogo Digital Completo",
@@ -913,10 +913,10 @@ const FinalCTA = ({ innerRef }: { innerRef?: RefObject<HTMLDivElement | null> })
         
         <div className="flex flex-col gap-4 w-full max-w-sm mx-auto">
           <motion.a
-            href="https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20com%20o%20kit%20de%2012%20perfumes.%20Pode%20me%20ajudar%20a%20escolher%20os%20mais%20vendidos%3F"
+            href="https://api.whatsapp.com/send?phone=5531993935885&text=Ol%C3%A1!%20Quero%20come%C3%A7ar%20com%20o%20kit%20de%2012%20perfumes.%20Pode%20me%20ajudar%20a%20escolher%20os%20mais%20vendidos%3F"
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => { if (typeof window !== 'undefined' && (window as any).fbq) (window as any).fbq('track', 'Lead', { content_name: 'Kit 12 perfumes' }); }}
+            onClick={() => { if (typeof window !== 'undefined' && (window as any).fbq) (window as any).fbq('track', 'Lead', { content_name: 'FinalCTA_Kit12' }); }}
             className="w-full h-[64px] text-[13px] font-display font-black bg-dark text-brand rounded-xl flex items-center justify-center text-center px-4 shadow-xl shadow-brand/10 uppercase tracking-tight"
             animate={{ 
               scale: [1, 1.05, 1],
@@ -934,10 +934,10 @@ const FinalCTA = ({ innerRef }: { innerRef?: RefObject<HTMLDivElement | null> })
           </motion.a>
 
           <motion.a
-            href="https://wa.me/31993935885?text=Ol%C3%A1!%20Quero%20testar%20o%20Kit%20Provar%20primeiro."
+            href="https://api.whatsapp.com/send?phone=5531993935885&text=Ol%C3%A1!%20Quero%20testar%20o%20Kit%20Provar%20primeiro."
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => { if (typeof window !== 'undefined' && (window as any).fbq) (window as any).fbq('track', 'Lead', { content_name: 'Kit 3 perfumes' }); }}
+            onClick={() => { if (typeof window !== 'undefined' && (window as any).fbq) (window as any).fbq('track', 'Lead', { content_name: 'FinalCTA_Kit3' }); }}
             className="w-full h-[64px] text-[13px] font-display font-black bg-zinc-100 text-dark border-2 border-dark rounded-xl flex items-center justify-center text-center px-4 uppercase tracking-tight"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -969,10 +969,10 @@ const FloatingWhatsApp = ({ show }: { show: boolean }) => (
   <AnimatePresence>
     {show && (
       <motion.a
-        href="https://wa.me/31993935885?text=Ol%C3%A1!%20Ainda%20tenho%20d%C3%BAvidas%20sobre%20os%20kits."
+        href="https://api.whatsapp.com/send?phone=5531993935885&text=Ol%C3%A1!%20Ainda%20tenho%20d%C3%BAvidas%20sobre%20os%20kits."
         target="_blank"
         rel="noopener noreferrer"
-        onClick={() => { if (typeof window !== 'undefined' && (window as any).fbq) (window as any).fbq('track', 'Contact'); }}
+        onClick={() => { if (typeof window !== 'undefined' && (window as any).fbq) (window as any).fbq('track', 'Contact', { content_name: 'Botao_Flutuante' }); }}
         initial={{ opacity: 0, scale: 0.5, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.5, y: 20 }}
