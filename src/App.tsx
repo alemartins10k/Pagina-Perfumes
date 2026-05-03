@@ -26,17 +26,16 @@ import { cn } from "./lib/utils";
 import { Button as MovingBorderButton } from "./components/ui/moving-border";
 import { ImageAutoSlider } from "./components/ui/image-auto-slider";
 
-const ExitIntentPopup = () => {
+const ExitIntentPopup = ({ videoStarted }: { videoStarted: boolean }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [hasShown, setHasShown] = useState(false);
 
   useEffect(() => {
-    // Adicionamos um pequeno delay para evitar que o popup apareça 
-    // imediatamente se o mouse já estiver fora da janela na carga da página
     const timer = setTimeout(() => {
       // 1. Detecção para Desktop (Mouse saindo pelo topo)
       const handleMouseLeave = (e: MouseEvent) => {
-        if (e.clientY <= 0 && !hasShown) {
+        // Agora só mostra se o vídeo tiver sido iniciado
+        if (e.clientY <= 0 && !hasShown && videoStarted) {
           setIsVisible(true);
           setHasShown(true);
         }
@@ -46,7 +45,7 @@ const ExitIntentPopup = () => {
       window.history.pushState({ exitIntent: true }, "");
 
       const handlePopState = (event: PopStateEvent) => {
-        if (!hasShown) {
+        if (!hasShown && videoStarted) {
           setIsVisible(true);
           setHasShown(true);
           window.history.pushState({ exitIntent: true }, "");
@@ -60,10 +59,10 @@ const ExitIntentPopup = () => {
         document.removeEventListener("mouseleave", handleMouseLeave);
         window.removeEventListener("popstate", handlePopState);
       };
-    }, 2000); // 2 segundos de delay para ativar o monitoramento
+    }, 2000);
 
     return () => clearTimeout(timer);
-  }, [hasShown]);
+  }, [hasShown, videoStarted]);
 
   const closePopup = () => {
     setIsVisible(false);
@@ -96,46 +95,46 @@ const ExitIntentPopup = () => {
             <img 
               src="https://i.imgur.com/w5nnLPm.jpeg" 
               alt="Alê" 
-              className="w-full aspect-square object-cover"
+              className="w-full h-auto max-h-[300px] object-contain bg-zinc-50"
             />
 
-            <div className="p-8 text-center text-balance">
-              <h3 className="text-xl font-display font-black text-dark mb-4 leading-tight uppercase tracking-tight">
+            <div className="p-6 text-center text-balance">
+              <h3 className="text-lg font-display font-black text-dark mb-3 leading-tight uppercase tracking-tight">
                 🚨 Espera! Você tá a um passo de começar a lucrar…
               </h3>
               
-              <p className="text-zinc-600 font-bold text-sm mb-4 leading-relaxed px-2">
+              <p className="text-zinc-600 font-bold text-sm mb-3 leading-relaxed">
                 Tem gente fazendo R$900 a R$1.000/mês vendendo 1 perfume por dia — mesmo começando do zero.
               </p>
 
-              <p className="text-zinc-500 font-medium text-xs mb-8 leading-relaxed">
+              <p className="text-zinc-500 font-medium text-[13px] mb-6 leading-relaxed">
                 Eu te explico exatamente como começar, com baixo investimento e passo a passo simples.
               </p>
 
               <motion.a
-                href="https://wa.me/31993935885?text=Ol%C3%A1%20Al%C3%AA!%20Vi%20que%20posso%20lucrar%20at%C3%A9%20mil%20reais%20por%20m%C3%AAs%20revendendo%20e%20quero%20come%C3%A7ar%20agora."
+                href="https://wa.me/5531993935885?text=Ol%C3%A1%20Al%C3%AA!%20Vi%20que%20posso%20lucrar%20at%C3%A9%20mil%20reais%20por%20m%C3%AAs%20revendendo%20e%20quero%20come%C3%A7ar%20agora."
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => {
                   if (typeof window !== 'undefined' && (window as any).fbq) {
-                    (window as any).fbq('track', 'Contact', { content_name: 'Exit Intent Popup' });
+                    (window as any).fbq('track', 'Contact', { content_name: 'Popup_Saida' });
                   }
                   closePopup();
                 }}
-                className="w-full h-[60px] bg-[#25D366] text-white rounded-2xl flex items-center justify-center font-display font-black text-sm uppercase tracking-tight shadow-lg shadow-green-500/20"
+                className="w-full h-[56px] bg-[#25D366] text-white rounded-xl flex items-center justify-center font-display font-black text-sm uppercase tracking-tight shadow-lg shadow-green-500/20"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
                 👉 QUERO COMEÇAR AGORA
               </motion.a>
               
-              <p className="mt-3 text-[10px] text-zinc-500 font-bold opacity-80">
-                (Responder rápido no WhatsApp – vagas limitadas)
+              <p className="mt-3 text-[10px] text-brand font-bold uppercase tracking-wider">
+                (Respondo rápido no WhatsApp – vagas limitadas)
               </p>
 
               <button 
                 onClick={closePopup}
-                className="mt-6 text-[10px] text-zinc-400 uppercase font-bold tracking-widest hover:text-zinc-600 transition-colors"
+                className="mt-6 text-[10px] text-zinc-400 uppercase font-bold tracking-widest hover:text-zinc-600 transition-colors block mx-auto"
               >
                 Sair e perder essa oportunidade
               </button>
@@ -202,7 +201,7 @@ const Navbar = () => (
   </nav>
 );
 
-const Hero = () => (
+const Hero = ({ isVideoStarted, onVideoStart }: { isVideoStarted: boolean, onVideoStart: () => void }) => (
   <section className="section-padding bg-white pt-20">
     <div className="mobile-container text-center">
       <motion.h1 
@@ -230,17 +229,45 @@ const Hero = () => (
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.3 }}
-        className="relative aspect-video rounded-xl overflow-hidden mb-8 bg-zinc-900 shadow-2xl border border-white/10"
+        className="relative aspect-video rounded-xl overflow-hidden mb-8 bg-zinc-900 shadow-2xl border border-white/10 group"
       >
-        <iframe
-          className="w-full h-full"
-          src="https://www.youtube.com/embed/YcLUyQwEdK4"
-          title="Vídeo de Apresentação"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          loading="lazy"
-        ></iframe>
+        {!isVideoStarted ? (
+          <div 
+            className="absolute inset-0 z-10 flex flex-col items-center justify-center cursor-pointer bg-black/60 backdrop-blur-[2px] transition-all hover:bg-black/40"
+            onClick={onVideoStart}
+          >
+            <motion.div 
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-16 h-16 bg-brand rounded-full flex items-center justify-center shadow-2xl shadow-brand/40 mb-4"
+            >
+              <div className="w-0 h-0 border-t-[10px] border-t-transparent border-l-[16px] border-l-dark border-b-[10px] border-b-transparent ml-1" />
+            </motion.div>
+            
+            <motion.p 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-white font-display font-black text-xs uppercase tracking-widest text-center px-6"
+            >
+              🔊 Clique e aumente o som
+            </motion.p>
+          </div>
+        ) : null}
+
+        {isVideoStarted ? (
+          <iframe
+            className="w-full h-full"
+            src="https://www.youtube.com/embed/YcLUyQwEdK4?autoplay=1&rel=0&modestbranding=1"
+            title="Vídeo de Apresentação"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        ) : (
+          <div className="w-full h-full bg-zinc-800 flex items-center justify-center">
+            <img src="https://i.ytimg.com/vi/YcLUyQwEdK4/maxresdefault.jpg" className="absolute inset-0 w-full h-full object-cover opacity-50" alt="Video Cover" />
+          </div>
+        )}
       </motion.div>
 
       <motion.div
@@ -963,13 +990,14 @@ const FloatingWhatsApp = ({ show }: { show: boolean }) => (
 );
 
 export default function App() {
+  const [isVideoStarted, setIsVideoStarted] = useState(false);
   const finalCtaRef = useRef<HTMLDivElement>(null);
   const isFinalCtaInView = useInView(finalCtaRef, { amount: 0.1 });
 
   return (
     <div className="min-h-screen selection:bg-brand/30">
       <Navbar />
-      <Hero />
+      <Hero isVideoStarted={isVideoStarted} onVideoStart={() => setIsVideoStarted(true)} />
       <VisualProof />
       <Earnings />
       <Kits />
@@ -979,7 +1007,7 @@ export default function App() {
       <FinalCTA innerRef={finalCtaRef} />
       <Footer />
       <FloatingWhatsApp show={isFinalCtaInView} />
-      <ExitIntentPopup />
+      <ExitIntentPopup videoStarted={isVideoStarted} />
     </div>
   );
 }
