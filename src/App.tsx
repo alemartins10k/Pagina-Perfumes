@@ -94,22 +94,26 @@ const ExitIntentPopup = () => {
             </button>
 
             <img 
-              src="https://i.imgur.com/XYaNdel.jpeg" 
+              src="https://i.imgur.com/w5nnLPm.jpeg" 
               alt="Alê" 
               className="w-full aspect-square object-cover"
             />
 
-            <div className="p-8 text-center">
-              <h3 className="text-xl font-display font-black text-dark mb-4 leading-tight">
-                Opa! Ainda tem alguma dúvida de como iniciar?
+            <div className="p-8 text-center text-balance">
+              <h3 className="text-xl font-display font-black text-dark mb-4 leading-tight uppercase tracking-tight">
+                🚨 Espera! Você tá a um passo de começar a lucrar…
               </h3>
               
-              <p className="text-zinc-600 font-medium text-sm mb-8">
-                Clique no botão abaixo e fale diretamente comigo.
+              <p className="text-zinc-600 font-bold text-sm mb-4 leading-relaxed px-2">
+                Tem gente fazendo R$900 a R$1.000/mês vendendo 1 perfume por dia — mesmo começando do zero.
+              </p>
+
+              <p className="text-zinc-500 font-medium text-xs mb-8 leading-relaxed">
+                Eu te explico exatamente como começar, com baixo investimento e passo a passo simples.
               </p>
 
               <motion.a
-                href="https://wa.me/31993935885?text=Ol%C3%A1%20Al%C3%AA!%20Ainda%20tenho%20d%C3%BAvidas%20antes%20de%20sair.%20Pode%20me%20ajudar%3F"
+                href="https://wa.me/31993935885?text=Ol%C3%A1%20Al%C3%AA!%20Vi%20que%20posso%20lucrar%20at%C3%A9%20mil%20reais%20por%20m%C3%AAs%20revendendo%20e%20quero%20come%C3%A7ar%20agora."
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => {
@@ -122,14 +126,18 @@ const ExitIntentPopup = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                👉 Falar com o Alê
+                👉 QUERO COMEÇAR AGORA
               </motion.a>
               
+              <p className="mt-3 text-[10px] text-zinc-500 font-bold opacity-80">
+                (Responder rápido no WhatsApp – vagas limitadas)
+              </p>
+
               <button 
                 onClick={closePopup}
                 className="mt-6 text-[10px] text-zinc-400 uppercase font-bold tracking-widest hover:text-zinc-600 transition-colors"
               >
-                Não, obrigado.
+                Sair e perder essa oportunidade
               </button>
             </div>
           </motion.div>
